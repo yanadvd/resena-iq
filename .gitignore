@@ -11,9 +11,9 @@ next-env.d.ts
 # production
 /build
 
-# env
-.env
-.env*.local
+# env (ignora todos los .env, pero mantiene .env.example en el repo)
+.env*
+!.env.example
 
 # prisma
 /prisma/*.db

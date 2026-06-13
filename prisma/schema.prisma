@@ -1,0 +1,264 @@
+// ============================================================================
+//  ReseñaIQ — Esquema de base de datos
+//  PostgreSQL + Prisma
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // URL con pooling (PgBouncer) para entornos serverless (Vercel).
+  url       = env("DATABASE_URL")
+  // Conexión directa (sin pooling) para migraciones. En local puede ser igual
+  // que DATABASE_URL; en Supabase/Neon es la URL "direct"/puerto 5432.
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------------
+//  Autenticación (NextAuth) + Usuarios
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String       @unique
+  emailVerified DateTime?
+  image         String?
+  password      String? // hash bcrypt (null si solo usa OAuth)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  accounts    Account[]
+  sessions    Session[]
+  memberships Membership[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------------------------------------------------------------------------
+//  Organización (tenant) + Roles
+//  Cada organización tiene su propia suscripción y sus propias fuentes/reseñas.
+// ---------------------------------------------------------------------------
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+enum Plan {
+  FREE
+  PRO
+  BUSINESS
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  INCOMPLETE
+  NONE
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  industry  String?
+  website   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // ---- Facturación / Stripe ----
+  plan                 Plan               @default(FREE)
+  subscriptionStatus   SubscriptionStatus @default(NONE)
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  stripePriceId        String?
+  currentPeriodEnd     DateTime?
+
+  // ---- Preferencias de alertas ----
+  alertEmail          String?
+  alertsEnabled       Boolean @default(true)
+  alertRatingThreshold Int    @default(3) // alerta si rating <= umbral
+
+  memberships Membership[]
+  sources     ReviewSource[]
+  reviews     Review[]
+  summaries   AnalysisSummary[]
+  alerts      Alert[]
+}
+
+model Membership {
+  id     String @id @default(cuid())
+  userId String
+  orgId  String
+  role   Role   @default(MEMBER)
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, orgId])
+}
+
+// ---------------------------------------------------------------------------
+//  Fuentes de reseñas + Reseñas
+// ---------------------------------------------------------------------------
+
+enum SourceType {
+  GOOGLE
+  YELP
+  TRIPADVISOR
+  TRUSTPILOT
+  CSV
+}
+
+enum SourceStatus {
+  CONNECTED
+  ERROR
+  SYNCING
+  DISCONNECTED
+}
+
+model ReviewSource {
+  id           String       @id @default(cuid())
+  orgId        String
+  type         SourceType
+  label        String // nombre legible, p.ej. "Google - Sucursal Centro"
+  externalId   String? // place_id, business_id, etc.
+  url          String?
+  status       SourceStatus @default(CONNECTED)
+  lastSyncedAt DateTime?
+  createdAt    DateTime     @default(now())
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  reviews      Review[]
+
+  @@index([orgId])
+}
+
+enum Sentiment {
+  POSITIVE
+  NEUTRAL
+  NEGATIVE
+}
+
+model Review {
+  id          String     @id @default(cuid())
+  orgId       String
+  sourceId    String
+  externalId  String? // id de la reseña en la plataforma origen (para dedupe)
+  source      SourceType
+  author      String?
+  rating      Int // 1..5
+  text        String     @db.Text
+  language    String?    @default("es")
+  publishedAt DateTime
+  createdAt   DateTime   @default(now())
+
+  // ---- Resultado del análisis IA/NLP ----
+  processed      Boolean    @default(false)
+  sentiment      Sentiment?
+  sentimentScore Float? // -1.0 .. 1.0
+  themes         String[] // temas recurrentes detectados
+  keywords       String[] // palabras clave
+  aiReply        String?    @db.Text // respuesta sugerida (Business plan)
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  reviewSource ReviewSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  alerts       Alert[]
+
+  @@unique([sourceId, externalId])
+  @@index([orgId, publishedAt])
+  @@index([orgId, sentiment])
+}
+
+// ---------------------------------------------------------------------------
+//  Resúmenes agregados generados por IA
+// ---------------------------------------------------------------------------
+
+model AnalysisSummary {
+  id              String   @id @default(cuid())
+  orgId           String
+  periodStart     DateTime
+  periodEnd       DateTime
+  reviewCount     Int
+  averageRating   Float
+  reputationScore Float // 0..100
+  positivePct     Float
+  neutralPct      Float
+  negativePct     Float
+  strengths       String[] // puntos fuertes
+  improvements    String[] // áreas de mejora
+  topThemes       String[]
+  summary         String   @db.Text
+  generatedAt     DateTime @default(now())
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, generatedAt])
+}
+
+// ---------------------------------------------------------------------------
+//  Alertas (email por reseñas negativas)
+// ---------------------------------------------------------------------------
+
+enum AlertType {
+  NEGATIVE_REVIEW
+  RATING_DROP
+  VOLUME_SPIKE
+}
+
+model Alert {
+  id        String    @id @default(cuid())
+  orgId     String
+  reviewId  String?
+  type      AlertType
+  channel   String    @default("email")
+  sentTo    String
+  message   String    @db.Text
+  createdAt DateTime  @default(now())
+
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  review       Review?      @relation(fields: [reviewId], references: [id], onDelete: SetNull)
+
+  @@index([orgId, createdAt])
+}

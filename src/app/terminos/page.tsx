@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 
 const EMPRESA = {
-  titular: "[NOMBRE DE LA EMPRESA O TITULAR]",
-  email: "soporte@tudominio.com",
-  jurisdiccion: "[CIUDAD]",
+  titular: "David Yana Nsang",
+  email: "ratify@gmail.com",
+  jurisdiccion: "Madrid",
   pais: "España",
 };
 

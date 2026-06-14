@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 // ⚠️ Sustituye estos valores por los datos reales de tu empresa antes de publicar.
 const EMPRESA = {
-  titular: "[NOMBRE DE LA EMPRESA O TITULAR]",
-  nif: "[NIF / CIF]",
-  direccion: "[DIRECCIÓN FISCAL COMPLETA]",
-  email: "privacidad@tudominio.com",
+  titular: "David Yana Nsang",
+  nif: "60114599M",
+  direccion: "Calle Doña Francisquita 3, 4ºD, 28041 Madrid (España)",
+  email: "ratify@gmail.com",
   pais: "España",
 };
 

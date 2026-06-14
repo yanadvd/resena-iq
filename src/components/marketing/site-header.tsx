@@ -56,8 +56,8 @@ export function SiteFooter() {
         <nav className="flex gap-6">
           <Link href="/pricing" className="hover:text-foreground">Precios</Link>
           <Link href="/login" className="hover:text-foreground">Entrar</Link>
-          <a href="#" className="hover:text-foreground">Privacidad</a>
-          <a href="#" className="hover:text-foreground">Términos</a>
+          <Link href="/privacidad" className="hover:text-foreground">Privacidad</Link>
+          <Link href="/terminos" className="hover:text-foreground">Términos</Link>
         </nav>
       </div>
     </footer>

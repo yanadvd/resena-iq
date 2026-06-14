@@ -111,6 +111,13 @@ function RegisterForm() {
         </Button>
       </form>
 
+      <p className="mt-4 text-center text-xs text-muted-foreground">
+        Al crear tu cuenta aceptas los{" "}
+        <Link href="/terminos" className="text-accent hover:underline">Términos</Link>{" "}
+        y la{" "}
+        <Link href="/privacidad" className="text-accent hover:underline">Política de Privacidad</Link>.
+      </p>
+
       <p className="mt-6 text-center text-sm text-muted-foreground">
         ¿Ya tienes cuenta?{" "}
         <Link href="/login" className="font-semibold text-accent hover:underline">

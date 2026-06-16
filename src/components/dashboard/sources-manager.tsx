@@ -27,6 +27,7 @@ export function SourcesManager({
   const [type, setType] = useState<SourceType>("GOOGLE");
   const [label, setLabel] = useState("");
   const [url, setUrl] = useState("");
+  const [externalId, setExternalId] = useState("");
   const [adding, setAdding] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -38,7 +39,7 @@ export function SourcesManager({
       const res = await fetch("/api/sources", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, label: label || SOURCE_META[type].label, url }),
+        body: JSON.stringify({ type, label: label || SOURCE_META[type].label, url, externalId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error");
@@ -48,6 +49,7 @@ export function SourcesManager({
       });
       setLabel("");
       setUrl("");
+      setExternalId("");
       router.refresh();
     } catch (e) {
       setMsg({ ok: false, text: e instanceof Error ? e.message : "Error" });
@@ -107,6 +109,24 @@ export function SourcesManager({
                 <Label htmlFor="url">URL del perfil (opcional)</Label>
                 <Input id="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://..." />
               </div>
+              {type === "GOOGLE" && (
+                <div className="space-y-2">
+                  <Label htmlFor="placeId">Place ID de Google</Label>
+                  <Input id="placeId" value={externalId} onChange={(e) => setExternalId(e.target.value)} placeholder="ChIJ..." />
+                  <p className="text-xs text-muted-foreground">
+                    Pégalo desde el{" "}
+                    <a
+                      href="https://developers.google.com/maps/documentation/places/web-service/place-id"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline"
+                    >
+                      buscador de Place ID
+                    </a>{" "}
+                    de Google. Necesario para traer reseñas reales.
+                  </p>
+                </div>
+              )}
               <Button type="submit" disabled={adding} className="w-full">
                 {adding ? <Loader2 className="size-4 animate-spin" /> : <Plus className="size-4" />}
                 Conectar y sincronizar

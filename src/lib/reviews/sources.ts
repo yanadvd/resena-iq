@@ -124,21 +124,22 @@ function makeAdapter(type: SourceType): SourceAdapter {
   };
 }
 
-interface GoogleReview {
-  author_name?: string;
+interface GoogleReviewNew {
+  name?: string; // "places/PLACE_ID/reviews/REVIEW_ID"
   rating?: number;
-  text?: string;
-  time?: number; // unix (segundos)
-  language?: string;
+  text?: { text?: string; languageCode?: string };
+  originalText?: { text?: string };
+  authorAttribution?: { displayName?: string };
+  publishTime?: string; // RFC3339
 }
 
 /**
- * Adaptador REAL de Google vía Places API "Place Details".
- * Requiere GOOGLE_MAPS_API_KEY (con "Places API" habilitada + billing) y que la
- * fuente tenga el Place ID en `externalId`. Google devuelve hasta 5 reseñas
- * recientes por lugar (límite de la propia API). Si falta la key o el Place ID,
+ * Adaptador REAL de Google vía Places API (New).
+ * Requiere GOOGLE_MAPS_API_KEY (con "Places API (New)" habilitada + billing) y
+ * que la fuente tenga el Place ID en `externalId`. Google devuelve hasta 5
+ * reseñas por lugar (límite de la propia API). Si falta la key o el Place ID,
  * cae al generador demo para no romper la app.
- * Doc: https://developers.google.com/maps/documentation/places/web-service/details
+ * Doc: https://developers.google.com/maps/documentation/places/web-service/place-details
  */
 async function googleFetch(
   source: ReviewSource,
@@ -148,40 +149,36 @@ async function googleFetch(
   const placeId = source.externalId;
   if (!apiKey || !placeId) return demoFetch(source, since);
 
-  const params = new URLSearchParams({
-    place_id: placeId,
-    fields: "reviews",
-    reviews_sort: "newest",
-    language: "es",
-    key: apiKey,
-  });
   const res = await fetch(
-    `https://maps.googleapis.com/maps/api/place/details/json?${params}`,
-    { cache: "no-store" }
+    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
+    {
+      headers: { "X-Goog-Api-Key": apiKey, "X-Goog-FieldMask": "reviews" },
+      cache: "no-store",
+    }
   );
-  const data = (await res.json()) as {
-    status: string;
-    error_message?: string;
-    result?: { reviews?: GoogleReview[] };
-  };
-  if (data.status !== "OK" && data.status !== "ZERO_RESULTS") {
-    throw new Error(
-      `Google Places API: ${data.status}${data.error_message ? ` — ${data.error_message}` : ""}`
-    );
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Google Places API: ${res.status} — ${body.slice(0, 200)}`);
   }
+  const data = (await res.json()) as { reviews?: GoogleReviewNew[] };
 
   const out: RawReview[] = [];
-  for (const r of data.result?.reviews ?? []) {
-    const publishedAt = new Date((r.time ?? 0) * 1000);
+  for (const r of data.reviews ?? []) {
+    const publishedAt = r.publishTime ? new Date(r.publishTime) : new Date();
     if (since && publishedAt <= since) continue;
-    const text = (r.text ?? "").trim() || "(Reseña sin comentario)";
+    const text =
+      (r.text?.text ?? r.originalText?.text ?? "").trim() ||
+      "(Reseña sin comentario)";
+    const reviewId =
+      r.name?.split("/").pop() ??
+      `${publishedAt.getTime()}-${hashString(text).toString(36)}`;
     out.push({
-      externalId: `google-${r.time ?? 0}-${hashString((r.author_name ?? "") + text).toString(36)}`,
-      author: r.author_name ?? "Anónimo",
+      externalId: `google-${reviewId}`,
+      author: r.authorAttribution?.displayName ?? "Anónimo",
       rating: Math.max(1, Math.min(5, Math.round(r.rating ?? 0))),
       text,
       publishedAt: isNaN(publishedAt.getTime()) ? new Date() : publishedAt,
-      language: r.language ?? "es",
+      language: r.text?.languageCode ?? "es",
     });
   }
   return out;

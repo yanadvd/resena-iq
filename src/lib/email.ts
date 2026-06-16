@@ -4,7 +4,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const FROM = process.env.ALERTS_FROM_EMAIL || "ReseñaIQ <onboarding@resend.dev>";
+const FROM = process.env.ALERTS_FROM_EMAIL || "Repusense <onboarding@resend.dev>";
 
 interface SendArgs {
   to: string;
@@ -51,6 +51,6 @@ export function negativeReviewEmail(opts: {
       <p style="margin:0;line-height:1.6">${opts.text}</p>
     </div>
     <a href="${opts.dashboardUrl}" style="display:inline-block;background:#6366f1;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600">Ver en el dashboard →</a>
-    <p style="margin:24px 0 0;font-size:12px;color:#6b6b76">Recibes esto porque tienes activadas las alertas en ReseñaIQ.</p>
+    <p style="margin:24px 0 0;font-size:12px;color:#6b6b76">Recibes esto porque tienes activadas las alertas en Repusense.</p>
   </div>`;
 }

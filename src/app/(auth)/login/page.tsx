@@ -118,7 +118,7 @@ export default function LoginPage() {
         <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
           <Sparkles className="size-4" />
         </span>
-        <span className="font-display font-semibold">ReseñaIQ</span>
+        <span className="font-display font-semibold">Repusense</span>
       </Link>
       <Suspense fallback={<Loader2 className="size-6 animate-spin" />}>
         <LoginForm />

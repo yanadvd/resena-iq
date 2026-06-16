@@ -11,7 +11,7 @@ export function SiteHeader() {
             <Sparkles className="size-5" />
           </span>
           <span className="font-display text-xl font-semibold tracking-tight">
-            Reseña<span className="text-accent">IQ</span>
+            Repu<span className="text-accent">sense</span>
           </span>
         </Link>
 
@@ -49,7 +49,7 @@ export function SiteFooter() {
             <Sparkles className="size-4" />
           </span>
           <span className="font-display font-semibold text-foreground">
-            ReseñaIQ
+            Repusense
           </span>
           <span className="ml-2">© {new Date().getFullYear()}</span>
         </div>

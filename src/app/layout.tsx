@@ -20,7 +20,7 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
-  title: "ReseñaIQ — Análisis de reseñas con IA para tu negocio",
+  title: "Repusense — Análisis de reseñas con IA para tu negocio",
   description:
     "Centraliza, analiza y mejora tu reputación online. Conecta Google, Yelp, TripAdvisor y Trustpilot, recibe análisis de sentimiento con IA y alertas automáticas.",
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "SaaS reseñas",
   ],
   openGraph: {
-    title: "ReseñaIQ — Tu reputación online, bajo control",
+    title: "Repusense — Tu reputación online, bajo control",
     description:
       "Análisis de reseñas con IA, automatización y alertas para negocios.",
     type: "website",

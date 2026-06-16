@@ -128,6 +128,6 @@ function buildReportHtml(
   </div>`
       : `<p>Aún no hay datos suficientes para generar un reporte. Sincroniza o importa reseñas primero.</p>`
   }
-  <p style="margin-top:40px;color:#aaa;font-size:12px">Generado por ReseñaIQ</p>
+  <p style="margin-top:40px;color:#aaa;font-size:12px">Generado por Repusense</p>
 </body></html>`;
 }

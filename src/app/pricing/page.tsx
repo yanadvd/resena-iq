@@ -3,7 +3,7 @@ import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { PricingCards } from "@/components/marketing/pricing-cards";
 
 export const metadata: Metadata = {
-  title: "Precios — ReseñaIQ",
+  title: "Precios — Repusense",
   description:
     "Planes Free, Pro y Business. Análisis de reseñas con IA para negocios de cualquier tamaño.",
 };

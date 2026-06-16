@@ -152,7 +152,7 @@ function Panel({
 
       {plan === "BUSINESS" && (
         <p className="text-center text-sm text-muted-foreground">
-          Estás en el plan más completo. ¡Gracias por confiar en ReseñaIQ! 🎉
+          Estás en el plan más completo. ¡Gracias por confiar en Repusense! 🎉
         </p>
       )}
     </div>

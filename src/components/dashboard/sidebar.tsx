@@ -25,7 +25,7 @@ export function Sidebar({ planLabel }: { planLabel: string }) {
           <Sparkles className="size-4" />
         </span>
         <span className="font-display text-lg font-semibold">
-          Reseña<span className="text-accent">IQ</span>
+          Repu<span className="text-accent">sense</span>
         </span>
       </div>
 

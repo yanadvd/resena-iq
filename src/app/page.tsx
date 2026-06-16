@@ -154,7 +154,7 @@ export default function HomePage() {
               Automatización de principio a fin
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Configúralo una vez y olvídate. ReseñaIQ trabaja en segundo plano
+              Configúralo una vez y olvídate. Repusense trabaja en segundo plano
               recopilando, analizando y avisándote de lo que importa.
             </p>
           </div>

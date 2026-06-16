@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LegalShell } from "@/components/marketing/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad — ReseñaIQ",
+  title: "Política de Privacidad — Repusense",
   description:
-    "Cómo ReseñaIQ recopila, usa y protege tus datos personales conforme al RGPD.",
+    "Cómo Repusense recopila, usa y protege tus datos personales conforme al RGPD.",
 };
 
 // ⚠️ Sustituye estos valores por los datos reales de tu empresa antes de publicar.
@@ -20,7 +20,7 @@ export default function PrivacidadPage() {
   return (
     <LegalShell title="Política de Privacidad" lastUpdated="14 de junio de 2026">
       <p>
-        En <strong>ReseñaIQ</strong> nos tomamos muy en serio la privacidad de
+        En <strong>Repusense</strong> nos tomamos muy en serio la privacidad de
         tus datos. Esta política explica qué datos personales recopilamos, con
         qué finalidad, sobre qué base legal, con quién los compartimos y qué
         derechos tienes, de conformidad con el Reglamento (UE) 2016/679{" "}

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalShell } from "@/components/marketing/legal-shell";
 
 export const metadata: Metadata = {
-  title: "Términos y Condiciones — ReseñaIQ",
-  description: "Condiciones de uso del servicio ReseñaIQ.",
+  title: "Términos y Condiciones — Repusense",
+  description: "Condiciones de uso del servicio Repusense.",
 };
 
 const EMPRESA = {
@@ -18,14 +18,14 @@ export default function TerminosPage() {
     <LegalShell title="Términos y Condiciones" lastUpdated="14 de junio de 2026">
       <p>
         Estos Términos y Condiciones regulan el acceso y uso de{" "}
-        <strong>ReseñaIQ</strong> (en adelante, "el Servicio"), titularidad de{" "}
+        <strong>Repusense</strong> (en adelante, "el Servicio"), titularidad de{" "}
         {EMPRESA.titular}. Al registrarte o utilizar el Servicio, aceptas estos
         términos en su totalidad.
       </p>
 
       <h2>1. Objeto del servicio</h2>
       <p>
-        ReseñaIQ es una plataforma SaaS que permite a negocios centralizar
+        Repusense es una plataforma SaaS que permite a negocios centralizar
         reseñas de distintas plataformas, analizarlas mediante inteligencia
         artificial y gestionar su reputación online desde un panel único.
       </p>

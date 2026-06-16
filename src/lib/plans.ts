@@ -17,7 +17,7 @@ export interface PlanConfig {
   id: Plan;
   name: string;
   description: string;
-  priceMonthly: number; // en USD
+  priceMonthly: number; // en EUR
   // Límites
   maxReviewsPerMonth: number; // Infinity para ilimitado
   maxSources: number;

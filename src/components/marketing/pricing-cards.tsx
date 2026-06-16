@@ -82,7 +82,7 @@ export function PricingCards({ compact = false }: { compact?: boolean }) {
               )}
               <div className="mt-5 flex items-baseline gap-1">
                 <span className="font-display text-5xl font-semibold">
-                  ${plan.priceMonthly}
+                  {plan.priceMonthly}€
                 </span>
                 <span className="text-muted-foreground">/mes</span>
               </div>

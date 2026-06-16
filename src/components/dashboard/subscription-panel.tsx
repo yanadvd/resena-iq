@@ -100,7 +100,7 @@ function Panel({
               <p className="font-display text-4xl font-semibold">
                 {current.name}
                 <span className="ml-2 text-lg font-normal text-muted-foreground">
-                  ${current.priceMonthly}/mes
+                  {current.priceMonthly}€/mes
                 </span>
               </p>
               <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
@@ -136,7 +136,7 @@ function Panel({
                       {target.highlight && <Sparkles className="size-4 text-accent" />}
                       <h3 className="font-display text-xl font-semibold">{target.name}</h3>
                     </div>
-                    <span className="font-display text-2xl font-semibold">${target.priceMonthly}<span className="text-sm font-normal text-muted-foreground">/mes</span></span>
+                    <span className="font-display text-2xl font-semibold">{target.priceMonthly}€<span className="text-sm font-normal text-muted-foreground">/mes</span></span>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">{target.description}</p>
                   <Button className="mt-4 w-full" onClick={() => startCheckout(p)} disabled={loading === p}>

@@ -75,7 +75,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/pricing">Ver planes</Link>
+              <Link href="/analisis-gratis">Analiza tu negocio gratis</Link>
             </Button>
           </div>
           <p className="animate-fade-up mt-4 text-xs text-muted-foreground" style={{ animationDelay: "200ms" }}>

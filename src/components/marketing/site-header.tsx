@@ -16,6 +16,9 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+          <Link href="/analisis-gratis" className="font-semibold text-accent transition-colors hover:text-accent/80">
+            Análisis gratis
+          </Link>
           <a href="/#features" className="transition-colors hover:text-foreground">
             Funcionalidades
           </a>

@@ -13,6 +13,8 @@ import { SOURCE_META } from "@/lib/reviews/sources";
 import type { ReviewSource, SourceType } from "@prisma/client";
 
 const CONNECTABLE: SourceType[] = ["GOOGLE", "YELP", "TRIPADVISOR", "TRUSTPILOT"];
+// Plataformas con integración real activa. El resto se muestran como "Pronto".
+const AVAILABLE_SOURCES: SourceType[] = ["GOOGLE"];
 
 export function SourcesManager({
   sources,
@@ -84,21 +86,31 @@ export function SourcesManager({
               <div className="space-y-2">
                 <Label>Plataforma</Label>
                 <div className="grid grid-cols-2 gap-2">
-                  {CONNECTABLE.map((t) => (
-                    <button
-                      key={t}
-                      type="button"
-                      onClick={() => setType(t)}
-                      className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm transition-colors ${
-                        type === t
-                          ? "border-primary bg-primary/10 text-foreground"
-                          : "border-border text-muted-foreground hover:bg-secondary"
-                      }`}
-                    >
-                      <span className="size-2.5 rounded-full" style={{ background: SOURCE_META[t].color }} />
-                      {SOURCE_META[t].label}
-                    </button>
-                  ))}
+                  {CONNECTABLE.map((t) => {
+                    const available = AVAILABLE_SOURCES.includes(t);
+                    return (
+                      <button
+                        key={t}
+                        type="button"
+                        disabled={!available}
+                        title={available ? undefined : "Disponible próximamente"}
+                        onClick={() => available && setType(t)}
+                        className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm transition-colors ${
+                          type === t
+                            ? "border-primary bg-primary/10 text-foreground"
+                            : "border-border text-muted-foreground hover:bg-secondary"
+                        } ${!available ? "cursor-not-allowed opacity-50 hover:bg-transparent" : ""}`}
+                      >
+                        <span className="size-2.5 rounded-full" style={{ background: SOURCE_META[t].color }} />
+                        <span className="truncate">{SOURCE_META[t].label}</span>
+                        {!available && (
+                          <span className="ml-auto shrink-0 rounded bg-secondary px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+                            Pronto
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
               <div className="space-y-2">

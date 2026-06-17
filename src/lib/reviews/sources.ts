@@ -184,9 +184,62 @@ async function googleFetch(
   return out;
 }
 
+interface YelpReview {
+  id: string;
+  text?: string;
+  rating?: number;
+  time_created?: string; // "2016-08-29 00:41:13"
+  user?: { name?: string };
+}
+
+/**
+ * Adaptador real de Yelp vía Fusion API.
+ * Requiere YELP_API_KEY y el Business ID/alias en `externalId`.
+ * Límite de Yelp: devuelve solo 3 reseñas y con el texto TRUNCADO (~160 car.).
+ * Doc: https://docs.developer.yelp.com/reference/v3_business_reviews
+ */
+async function yelpFetch(
+  source: ReviewSource,
+  since?: Date | null
+): Promise<RawReview[]> {
+  const apiKey = process.env.YELP_API_KEY;
+  const bizId = source.externalId;
+  if (!apiKey || !bizId) return demoFetch(source, since);
+
+  const res = await fetch(
+    `https://api.yelp.com/v3/businesses/${encodeURIComponent(bizId)}/reviews?limit=20&sort_by=newest`,
+    { headers: { Authorization: `Bearer ${apiKey}` }, cache: "no-store" }
+  );
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Yelp Fusion API: ${res.status} — ${body.slice(0, 200)}`);
+  }
+  const data = (await res.json()) as {
+    reviews?: YelpReview[];
+    possible_languages?: string[];
+  };
+
+  const out: RawReview[] = [];
+  for (const r of data.reviews ?? []) {
+    const publishedAt = r.time_created
+      ? new Date(r.time_created.replace(" ", "T"))
+      : new Date();
+    if (since && publishedAt <= since) continue;
+    out.push({
+      externalId: `yelp-${r.id}`,
+      author: r.user?.name ?? "Anónimo",
+      rating: Math.max(1, Math.min(5, Math.round(r.rating ?? 0))),
+      text: (r.text ?? "").trim() || "(Reseña sin comentario)",
+      publishedAt: isNaN(publishedAt.getTime()) ? new Date() : publishedAt,
+      language: data.possible_languages?.[0] ?? "en",
+    });
+  }
+  return out;
+}
+
 export const ADAPTERS: Record<SourceType, SourceAdapter> = {
   GOOGLE: { type: "GOOGLE", fetchReviews: googleFetch },
-  YELP: makeAdapter("YELP"),
+  YELP: { type: "YELP", fetchReviews: yelpFetch },
   TRIPADVISOR: makeAdapter("TRIPADVISOR"),
   TRUSTPILOT: makeAdapter("TRUSTPILOT"),
   CSV: {

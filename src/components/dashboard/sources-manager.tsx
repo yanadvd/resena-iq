@@ -109,21 +109,34 @@ export function SourcesManager({
                 <Label htmlFor="url">URL del perfil (opcional)</Label>
                 <Input id="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://..." />
               </div>
-              {type === "GOOGLE" && (
+              {(type === "GOOGLE" || type === "YELP") && (
                 <div className="space-y-2">
-                  <Label htmlFor="placeId">Place ID de Google</Label>
-                  <Input id="placeId" value={externalId} onChange={(e) => setExternalId(e.target.value)} placeholder="ChIJ..." />
+                  <Label htmlFor="extId">
+                    {type === "GOOGLE" ? "Place ID de Google" : "Business ID / alias de Yelp"}
+                  </Label>
+                  <Input
+                    id="extId"
+                    value={externalId}
+                    onChange={(e) => setExternalId(e.target.value)}
+                    placeholder={type === "GOOGLE" ? "ChIJ..." : "restaurant-shusui-venray"}
+                  />
                   <p className="text-xs text-muted-foreground">
-                    Pégalo desde el{" "}
-                    <a
-                      href="https://developers.google.com/maps/documentation/places/web-service/place-id"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:underline"
-                    >
-                      buscador de Place ID
-                    </a>{" "}
-                    de Google. Necesario para traer reseñas reales.
+                    {type === "GOOGLE" ? (
+                      <>
+                        Pégalo desde el{" "}
+                        <a
+                          href="https://developers.google.com/maps/documentation/places/web-service/place-id"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:underline"
+                        >
+                          buscador de Place ID
+                        </a>{" "}
+                        de Google (de un negocio con ficha). Necesario para reseñas reales.
+                      </>
+                    ) : (
+                      "El ID o alias del negocio en Yelp (aparece en la URL de su ficha). Yelp solo expone ~3 reseñas. Necesario para reseñas reales."
+                    )}
                   </p>
                 </div>
               )}

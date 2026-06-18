@@ -16,9 +16,11 @@ const SENTIMENTS: { value: Sentiment | "ALL"; label: string }[] = [
 export function ReviewsExplorer({
   reviews,
   sources,
+  canAiReply,
 }: {
   reviews: Review[];
   sources: SourceType[];
+  canAiReply?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [sentiment, setSentiment] = useState<Sentiment | "ALL">("ALL");
@@ -88,7 +90,7 @@ export function ReviewsExplorer({
 
       <div className="grid gap-3 md:grid-cols-2">
         {filtered.map((r) => (
-          <ReviewCard key={r.id} review={r} />
+          <ReviewCard key={r.id} review={r} canAiReply={canAiReply} />
         ))}
       </div>
       {filtered.length === 0 && (

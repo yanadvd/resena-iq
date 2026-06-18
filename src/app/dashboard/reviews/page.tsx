@@ -2,6 +2,7 @@ import { getDashboardContext } from "@/lib/dashboard-context";
 import { prisma } from "@/lib/prisma";
 import { Topbar } from "@/components/dashboard/topbar";
 import { ReviewsExplorer } from "@/components/dashboard/reviews-explorer";
+import { planHasFeature } from "@/lib/plans";
 import type { SourceType } from "@prisma/client";
 
 export default async function ReviewsPage() {
@@ -23,7 +24,11 @@ export default async function ReviewsPage() {
             Aún no hay reseñas. Conecta una fuente o importa un CSV para empezar.
           </div>
         ) : (
-          <ReviewsExplorer reviews={reviews} sources={sources} />
+          <ReviewsExplorer
+            reviews={reviews}
+            sources={sources}
+            canAiReply={planHasFeature(ctx.org.plan, "aiReplies")}
+          />
         )}
       </main>
     </>

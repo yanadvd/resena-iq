@@ -2,6 +2,7 @@ import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { AiReplyButton } from "./ai-reply-button";
 import type { Review, Sentiment } from "@prisma/client";
 
 export function StatCard({
@@ -71,7 +72,13 @@ export function Stars({ rating }: { rating: number }) {
   );
 }
 
-export function ReviewCard({ review }: { review: Review }) {
+export function ReviewCard({
+  review,
+  canAiReply,
+}: {
+  review: Review;
+  canAiReply?: boolean;
+}) {
   return (
     <div className="rounded-xl border border-border bg-card/50 p-4">
       <div className="flex items-start justify-between gap-3">
@@ -101,6 +108,9 @@ export function ReviewCard({ review }: { review: Review }) {
             </span>
           ))}
         </div>
+      )}
+      {canAiReply && (
+        <AiReplyButton reviewId={review.id} initialReply={review.aiReply} />
       )}
     </div>
   );

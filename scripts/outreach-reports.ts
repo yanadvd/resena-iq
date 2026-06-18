@@ -13,7 +13,8 @@
 import fs from "node:fs";
 import { generatePublicReport, type PublicReport } from "../src/lib/public-report";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://repusense.net";
+// Outreach a prospectos reales: siempre enlaza a la web en producción.
+const APP_URL = "https://repusense.net";
 
 function getBusinesses(): string[] {
   const args = process.argv.slice(2);

@@ -56,7 +56,9 @@ export function SiteFooter() {
           </span>
           <span className="ml-2">© {new Date().getFullYear()}</span>
         </div>
-        <nav className="flex gap-6">
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <Link href="/analisis-gratis" className="hover:text-foreground">Análisis gratis</Link>
+          <Link href="/blog" className="hover:text-foreground">Blog</Link>
           <Link href="/pricing" className="hover:text-foreground">Precios</Link>
           <Link href="/login" className="hover:text-foreground">Entrar</Link>
           <Link href="/privacidad" className="hover:text-foreground">Privacidad</Link>

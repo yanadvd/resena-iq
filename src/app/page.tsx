@@ -6,6 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { PricingCards } from "@/components/marketing/pricing-cards";
+import { SoftwareJsonLd } from "@/components/marketing/json-ld";
 
 const FEATURES = [
   {
@@ -50,6 +51,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen">
       <div className="bg-mesh absolute inset-0 -z-10 h-[900px] opacity-80" />
+      <SoftwareJsonLd />
       <SiteHeader />
 
       {/* HERO */}

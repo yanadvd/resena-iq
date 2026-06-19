@@ -19,6 +19,7 @@ function RegisterForm() {
     email: "",
     password: "",
   });
+  const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,7 +35,7 @@ function RegisterForm() {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, marketingOptIn }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "No se pudo crear la cuenta");
@@ -105,6 +106,18 @@ function RegisterForm() {
           <Input id="password" type="password" autoComplete="new-password" required value={form.password} onChange={(e) => update("password", e.target.value)} placeholder="Mínimo 8 caracteres" />
         </div>
         {error && <p className="text-sm text-destructive">{error}</p>}
+        <label className="flex items-start gap-2.5 text-xs text-muted-foreground">
+          <input
+            type="checkbox"
+            checked={marketingOptIn}
+            onChange={(e) => setMarketingOptIn(e.target.checked)}
+            className="mt-0.5 size-4 shrink-0 accent-[hsl(var(--primary))]"
+          />
+          <span>
+            Quiero recibir novedades, consejos y ofertas de Repusense por email.
+            Puedo darme de baja cuando quiera. (Opcional)
+          </span>
+        </label>
         <Button type="submit" className="w-full" disabled={loading}>
           {loading && <Loader2 className="size-4 animate-spin" />}
           Crear cuenta gratis

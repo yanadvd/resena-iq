@@ -4,11 +4,15 @@ import { ArrowRight, Clock } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { BLOG_POSTS } from "@/content/blog";
 
+const TITLE = "Blog — Reputación online y reseñas | Repusense";
+const DESCRIPTION =
+  "Consejos prácticos para gestionar tu reputación online, conseguir más reseñas positivas y responder a las negativas.";
+
 export const metadata: Metadata = {
-  title: "Blog — Reputación online y reseñas | Repusense",
-  description:
-    "Consejos prácticos para gestionar tu reputación online, conseguir más reseñas positivas y responder a las negativas.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/blog" },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
 };
 
 export default function BlogIndex() {

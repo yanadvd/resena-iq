@@ -4,11 +4,15 @@ import { ArrowRight, Star, Bell, Bot, TrendingUp, UtensilsCrossed } from "lucide
 import { Button } from "@/components/ui/button";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 
+const TITLE = "Software de gestión de reseñas para restaurantes | Repusense";
+const DESCRIPTION =
+  "Analiza y mejora la reputación de tu restaurante con IA: centraliza tus reseñas de Google, detecta qué gusta y qué no, y recibe alertas de reseñas negativas.";
+
 export const metadata: Metadata = {
-  title: "Software de gestión de reseñas para restaurantes | Repusense",
-  description:
-    "Analiza y mejora la reputación de tu restaurante con IA: centraliza tus reseñas de Google, detecta qué gusta y qué no, y recibe alertas de reseñas negativas.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/para/restaurantes" },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
 };
 
 const BENEFITS = [

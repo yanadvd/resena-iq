@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { BLOG_POSTS, getPost } from "@/content/blog";
+import { BreadcrumbJsonLd } from "@/components/marketing/json-ld";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://repusense.net";
 
@@ -50,6 +51,13 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Inicio", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
       />
 
       <main className="container max-w-2xl py-14">

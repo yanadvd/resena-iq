@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Política de Privacidad — Repusense",
   description:
     "Cómo Repusense recopila, usa y protege tus datos personales conforme al RGPD.",
+  alternates: { canonical: "/privacidad" },
+  openGraph: {
+    title: "Política de Privacidad — Repusense",
+    description:
+      "Cómo Repusense recopila, usa y protege tus datos personales conforme al RGPD.",
+    type: "website",
+  },
 };
 
 // ⚠️ Sustituye estos valores por los datos reales de tu empresa antes de publicar.

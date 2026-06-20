@@ -3,11 +3,15 @@ import { Zap, Bot, Bell } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { FreeReportTool } from "@/components/marketing/free-report-tool";
 
+const TITLE = "Análisis de reputación gratis con IA | Repusense";
+const DESCRIPTION =
+  "Analiza gratis las reseñas de tu negocio en Google con inteligencia artificial: puntuación de reputación, sentimiento y puntos a mejorar. Sin registro, en 30 segundos.";
+
 export const metadata: Metadata = {
-  title: "Análisis de reputación gratis | Repusense",
-  description:
-    "Analiza gratis las reseñas de tu negocio en Google con inteligencia artificial: puntuación de reputación, sentimiento y puntos a mejorar. Sin registro.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/analisis-gratis" },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
 };
 
 export default function AnalisisGratisPage() {

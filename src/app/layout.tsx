@@ -30,12 +30,14 @@ export const metadata: Metadata = {
     "Google Reviews",
     "SaaS reseñas",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Repusense — Tu reputación online, bajo control",
+    title: "Repusense — Análisis de reseñas con IA para negocios locales",
     description:
-      "Análisis de reseñas con IA, automatización y alertas para negocios.",
+      "Centraliza tus reseñas de Google y otras plataformas, analízalas con IA y mejora tu reputación online. Alertas, reportes y respuestas con IA.",
     type: "website",
     locale: "es_ES",
+    siteName: "Repusense",
   },
 };
 

@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { PricingCards } from "@/components/marketing/pricing-cards";
+import { FaqJsonLd } from "@/components/marketing/json-ld";
+
+const TITLE = "Precios y planes — Repusense | desde 0€";
+const DESCRIPTION =
+  "Planes Free, Pro (29€/mes) y Business (79€/mes) de Repusense. Análisis de reseñas con IA para negocios de cualquier tamaño. Sin permanencia.";
 
 export const metadata: Metadata = {
-  title: "Precios — Repusense",
-  description:
-    "Planes Free, Pro y Business. Análisis de reseñas con IA para negocios de cualquier tamaño.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/pricing" },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
 };
 
 const FAQ = [
@@ -31,6 +37,7 @@ export default function PricingPage() {
   return (
     <div className="relative min-h-screen">
       <div className="bg-mesh absolute inset-0 -z-10 h-[600px] opacity-70" />
+      <FaqJsonLd items={FAQ} />
       <SiteHeader />
 
       <section className="container py-16 text-center">

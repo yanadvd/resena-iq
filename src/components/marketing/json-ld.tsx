@@ -25,3 +25,46 @@ export function SoftwareJsonLd() {
     />
   );
 }
+
+/** FAQPage — hace que las preguntas aparezcan expandidas en Google. */
+export function FaqJsonLd({ items }: { items: { q: string; a: string }[] }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+/** BreadcrumbList — ruta de migas para Google. */
+export function BreadcrumbJsonLd({
+  items,
+}: {
+  items: { name: string; path: string }[];
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: `${APP_URL}${item.path}`,
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

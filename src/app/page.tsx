@@ -62,12 +62,15 @@ export default function HomePage() {
             Análisis de reseñas potenciado por IA
           </div>
           <h1 className="animate-fade-up mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-balance md:text-7xl">
-            Tu reputación online,
-            <span className="block italic text-accent">bajo control</span>
+            Análisis de reseñas con IA
+            <span className="block italic text-accent">para negocios locales</span>
           </h1>
           <p className="animate-fade-up mt-6 text-lg text-muted-foreground text-balance md:text-xl" style={{ animationDelay: "80ms" }}>
-            Centraliza tus reseñas de todas las plataformas, deja que la IA las
-            analice y convierte la opinión de tus clientes en decisiones que
+            <strong className="font-semibold text-foreground">
+              Tu reputación online, bajo control.
+            </strong>{" "}
+            Centraliza tus reseñas de Google y otras plataformas, deja que la IA
+            las analice y convierte la opinión de tus clientes en decisiones que
             hacen crecer tu negocio.
           </p>
           <div className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" style={{ animationDelay: "160ms" }}>

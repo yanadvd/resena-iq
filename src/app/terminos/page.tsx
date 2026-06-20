@@ -4,6 +4,12 @@ import { LegalShell } from "@/components/marketing/legal-shell";
 export const metadata: Metadata = {
   title: "Términos y Condiciones — Repusense",
   description: "Condiciones de uso del servicio Repusense.",
+  alternates: { canonical: "/terminos" },
+  openGraph: {
+    title: "Términos y Condiciones — Repusense",
+    description: "Condiciones de uso del servicio Repusense.",
+    type: "website",
+  },
 };
 
 const EMPRESA = {

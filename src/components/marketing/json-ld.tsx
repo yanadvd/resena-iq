@@ -6,17 +6,43 @@ export function SoftwareJsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Repusense",
+    url: "https://repusense.net",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    url: APP_URL,
     description:
-      "Análisis de reseñas con IA para negocios: centraliza Google y otras plataformas, mide tu reputación, detecta temas y recibe alertas de reseñas negativas.",
+      "Centraliza, analiza y mejora tu reputación online. Conecta Google, Yelp, TripAdvisor y Trustpilot, recibe análisis de sentimiento con IA y alertas automáticas.",
     offers: [
-      { "@type": "Offer", name: "Free", price: "0", priceCurrency: "EUR" },
-      { "@type": "Offer", name: "Pro", price: "29", priceCurrency: "EUR" },
-      { "@type": "Offer", name: "Business", price: "79", priceCurrency: "EUR" },
+      {
+        "@type": "Offer",
+        name: "Free",
+        price: "0",
+        priceCurrency: "EUR",
+        description: "Hasta 50 reseñas/mes, 1 canal conectado",
+      },
+      {
+        "@type": "Offer",
+        name: "Pro",
+        price: "29",
+        priceCurrency: "EUR",
+        description: "Hasta 500 reseñas/mes, 3 canales conectados",
+      },
+      {
+        "@type": "Offer",
+        name: "Business",
+        price: "79",
+        priceCurrency: "EUR",
+        description: "Reseñas ilimitadas, todos los canales",
+      },
     ],
-    publisher: { "@type": "Organization", name: "Repusense", url: APP_URL },
+    featureList: [
+      "Análisis de sentimiento con IA",
+      "Monitorización de Google Reviews, Yelp, TripAdvisor y Trustpilot",
+      "Alertas de reseñas negativas en tiempo real",
+      "Dashboard de reputación con puntuación 0-100",
+      "Reportes exportables en PDF y CSV",
+      "Respuestas sugeridas con IA",
+    ],
+    screenshot: "https://repusense.net/og-image.png",
   };
   return (
     <script

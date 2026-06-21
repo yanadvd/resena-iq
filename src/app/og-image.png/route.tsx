@@ -1,195 +1,221 @@
 import { ImageResponse } from "next/og";
 
+type Weight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+type OgFont = { name: string; data: ArrayBuffer; weight?: Weight; style?: "normal" | "italic" };
+
 export const runtime = "edge";
+
+const W = 1200;
+const H = 630;
 
 const BG = "#0b0c14";
 const CARD = "#13141f";
 const PRIMARY = "#7c7cf8";
 const ACCENT = "#2dd9c2";
 const FG = "#f0f0f5";
-const MUTED = "#8f8fa0";
+const MUTED = "#7e7e96";
 const BORDER = "#1e1f2e";
 
-const W = 1200;
-const H = 630;
-
 export async function GET() {
-  // Fuentes desde Google Fonts (edge-compatible)
-  const [fraunces, manrope] = await Promise.all([
-    fetch("https://fonts.gstatic.com/s/fraunces/v31/6NUt8FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnDiw.woff").then(
-      (r) => r.arrayBuffer()
-    ),
-    fetch("https://fonts.gstatic.com/s/manrope/v15/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk59E-_F87jxeN8.woff").then(
-      (r) => r.arrayBuffer()
-    ),
-  ]);
+  try {
+    // Carga las fuentes de Google Fonts con timeout
+    let fraunces: ArrayBuffer | null = null;
+    let manrope: ArrayBuffer | null = null;
+    try {
+      const [fr, ma] = await Promise.all([
+        fetch(
+          "https://fonts.gstatic.com/s/fraunces/v31/6NUt8FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnDiw.woff",
+          { signal: AbortSignal.timeout(4000) }
+        ).then((r) => r.arrayBuffer()),
+        fetch(
+          "https://fonts.gstatic.com/s/manrope/v15/xn7_YHE41ni1AdIRqAuZuw1Bx9mbZk59E-_F87jxeN8.woff",
+          { signal: AbortSignal.timeout(4000) }
+        ).then((r) => r.arrayBuffer()),
+      ]);
+      fraunces = fr;
+      manrope = ma;
+    } catch {
+      // Continúa sin fuentes personalizadas (usa sans-serif del sistema)
+    }
 
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: 1200,
-          height: 630,
-          background: BG,
-          display: "flex",
-          flexDirection: "column",
-          padding: "56px 64px",
-          position: "relative",
-          overflow: "hidden",
-          fontFamily: "Manrope",
-        }}
-      >
-        {/* Glow de fondo — círculo de luz */}
+    const fonts: OgFont[] = [];
+    if (fraunces) fonts.push({ name: "Fraunces", data: fraunces, weight: 700, style: "italic" });
+    if (manrope)  fonts.push({ name: "Manrope",  data: manrope,  weight: 500, style: "normal" });
+
+    const displayFont = fraunces ? "Fraunces" : "serif";
+    const bodyFont   = manrope   ? "Manrope"  : "sans-serif";
+
+    return new ImageResponse(
+      (
         <div
           style={{
-            position: "absolute",
-            top: -180,
-            left: -120,
-            width: 700,
-            height: 700,
-            borderRadius: "50%",
-            background: `radial-gradient(circle, ${PRIMARY}22 0%, transparent 70%)`,
+            width: W,
+            height: H,
+            background: BG,
+            display: "flex",
+            flexDirection: "column",
+            padding: "56px 64px",
+            position: "relative",
+            overflow: "hidden",
           }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: -200,
-            right: -100,
-            width: 600,
-            height: 600,
-            borderRadius: "50%",
-            background: `radial-gradient(circle, ${ACCENT}18 0%, transparent 70%)`,
-          }}
-        />
+        >
+          {/* Glow superior izquierdo */}
+          <div
+            style={{
+              position: "absolute",
+              top: -200,
+              left: -150,
+              width: 650,
+              height: 650,
+              borderRadius: 9999,
+              background: `radial-gradient(circle, rgba(124,124,248,0.14) 0%, transparent 70%)`,
+              display: "flex",
+            }}
+          />
+          {/* Glow inferior derecho */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: -180,
+              right: -120,
+              width: 550,
+              height: 550,
+              borderRadius: 9999,
+              background: `radial-gradient(circle, rgba(45,217,194,0.11) 0%, transparent 70%)`,
+              display: "flex",
+            }}
+          />
 
-        {/* Header: logo + URL */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            {/* Logo mark */}
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 12,
-                background: PRIMARY,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L13.09 8.26L19 6L14.74 10.74L21 12L14.74 13.26L19 18L13.09 15.74L12 22L10.91 15.74L5 18L9.26 13.26L3 12L9.26 10.74L5 6L10.91 8.26L12 2Z" fill="white" />
-              </svg>
+          {/* Header */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            {/* Logo */}
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <div
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: 13,
+                  background: PRIMARY,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div style={{ width: 22, height: 22, background: "rgba(255,255,255,0.9)", borderRadius: 4, display: "flex" }} />
+              </div>
+              <div
+                style={{
+                  fontFamily: displayFont,
+                  fontSize: 30,
+                  fontWeight: 700,
+                  color: FG,
+                  display: "flex",
+                  gap: 0,
+                }}
+              >
+                <span>Repu</span>
+                <span style={{ color: ACCENT }}>sense</span>
+              </div>
             </div>
-            <span
-              style={{
-                fontFamily: "Fraunces",
-                fontSize: 28,
-                fontWeight: 700,
-                color: FG,
-                letterSpacing: "-0.5px",
-              }}
-            >
-              Repu<span style={{ color: ACCENT }}>sense</span>
+            <div style={{ fontSize: 15, color: MUTED, fontFamily: bodyFont, display: "flex" }}>
+              repusense.net
+            </div>
+          </div>
+
+          {/* Chip */}
+          <div
+            style={{
+              marginTop: 50,
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              background: "rgba(124,124,248,0.10)",
+              border: `1px solid rgba(124,124,248,0.28)`,
+              borderRadius: 99,
+              padding: "7px 18px",
+              width: "fit-content",
+            }}
+          >
+            <div style={{ width: 8, height: 8, borderRadius: 9999, background: ACCENT, display: "flex" }} />
+            <span style={{ fontSize: 15, color: PRIMARY, fontWeight: 600, fontFamily: bodyFont, display: "flex" }}>
+              Análisis de reseñas · Inteligencia Artificial
             </span>
           </div>
-          <span style={{ fontSize: 15, color: MUTED }}>repusense.net</span>
-        </div>
 
-        {/* Tagline chip */}
-        <div
-          style={{
-            marginTop: 52,
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            background: `${PRIMARY}18`,
-            border: `1px solid ${PRIMARY}40`,
-            borderRadius: 99,
-            padding: "6px 16px",
-            width: "fit-content",
-          }}
-        >
-          <div style={{ width: 7, height: 7, borderRadius: "50%", background: ACCENT }} />
-          <span style={{ fontSize: 14, color: PRIMARY, fontWeight: 600 }}>
-            Análisis de reseñas · Inteligencia Artificial
-          </span>
-        </div>
+          {/* Headline */}
+          <div
+            style={{
+              marginTop: 22,
+              fontFamily: displayFont,
+              fontSize: 66,
+              fontWeight: 700,
+              lineHeight: 1.06,
+              letterSpacing: "-1.5px",
+              color: FG,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <span>Reputación online</span>
+            <span style={{ color: ACCENT, fontStyle: "italic" }}>bajo control.</span>
+          </div>
 
-        {/* Headline */}
-        <div
-          style={{
-            marginTop: 24,
-            fontFamily: "Fraunces",
-            fontSize: 64,
-            fontWeight: 700,
-            lineHeight: 1.05,
-            color: FG,
-            letterSpacing: "-1.5px",
-          }}
-        >
-          Reputación online
-          <br />
-          <span style={{ color: ACCENT, fontStyle: "italic" }}>bajo control.</span>
-        </div>
+          {/* Subtítulo */}
+          <div
+            style={{
+              marginTop: 22,
+              fontSize: 22,
+              color: MUTED,
+              lineHeight: 1.45,
+              maxWidth: 660,
+              fontFamily: bodyFont,
+              display: "flex",
+            }}
+          >
+            Centraliza tus reseñas de Google, analízalas con IA y recibe
+            alertas de reseñas negativas en tiempo real.
+          </div>
 
-        {/* Subtítulo */}
-        <div
-          style={{
-            marginTop: 20,
-            fontSize: 22,
-            color: MUTED,
-            lineHeight: 1.4,
-            maxWidth: 680,
-          }}
-        >
-          Centraliza tus reseñas de Google, analízalas con IA y recibe
-          alertas de reseñas negativas en tiempo real.
+          {/* Feature pills */}
+          <div
+            style={{
+              marginTop: "auto",
+              display: "flex",
+              gap: 12,
+              flexWrap: "nowrap",
+            }}
+          >
+            {[
+              "✦ Sentimiento con IA",
+              "✦ Alertas en tiempo real",
+              "✦ Puntuación 0–100",
+              "✦ PDF y CSV",
+            ].map((f) => (
+              <div
+                key={f}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  background: CARD,
+                  border: `1px solid ${BORDER}`,
+                  borderRadius: 11,
+                  padding: "11px 18px",
+                  fontSize: 14,
+                  color: FG,
+                  fontFamily: bodyFont,
+                  fontWeight: 500,
+                }}
+              >
+                {f}
+              </div>
+            ))}
+          </div>
         </div>
-
-        {/* Features pills */}
-        <div
-          style={{
-            marginTop: "auto",
-            display: "flex",
-            gap: 12,
-          }}
-        >
-          {[
-            "Análisis de sentimiento IA",
-            "Alertas en tiempo real",
-            "Puntuación 0–100",
-            "PDF y CSV",
-          ].map((f) => (
-            <div
-              key={f}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                background: CARD,
-                border: `1px solid ${BORDER}`,
-                borderRadius: 10,
-                padding: "10px 16px",
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M20 6L9 17L4 12" stroke={ACCENT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span style={{ fontSize: 14, color: FG, fontWeight: 500 }}>{f}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    {
-      width: W,
-      height: H,
-      fonts: [
-        { name: "Fraunces", data: fraunces, weight: 700, style: "italic" },
-        { name: "Manrope", data: manrope, weight: 500, style: "normal" },
-      ],
-    }
-  );
+      ),
+      { width: W, height: H, fonts }
+    );
+  } catch (err) {
+    console.error("[og-image] error:", err);
+    return new Response("Error generando imagen", { status: 500 });
+  }
 }

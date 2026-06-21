@@ -637,6 +637,951 @@ export const BLOG_POSTS: BlogPost[] = [
       </>
     ),
   },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    slug: "mejores-herramientas-gestion-resenas-agencias",
+    title: "Las mejores herramientas de gestión de reseñas para agencias (2026)",
+    description:
+      "Comparativa de las mejores plataformas para gestionar reseñas de múltiples clientes desde una sola herramienta: BrightLocal, Vendasta, Podium, Grade.us y Repusense. Criterios, precios y cuál elegir según el tamaño de tu agencia.",
+    date: "2026-06-18",
+    readingTime: "12 min",
+    body: (
+      <>
+        <p>
+          Gestionar la reputación online de un cliente ya es suficientemente
+          complejo. Hacerlo para 10, 20 o 50 clientes simultáneamente —
+          con plataformas distintas, fichas distintas y expectativas distintas —
+          es otro nivel. Sin la herramienta adecuada, se convierte en un cuello de
+          botella que impide crecer tu agencia sin contratar más personal.
+        </p>
+        <p>
+          Esta guía compara las principales plataformas del mercado en 2026
+          con criterios prácticos para agencias: precio por cliente gestionado,
+          capacidad multi-cuenta, calidad de reportes y curva de aprendizaje.
+        </p>
+
+        <h2>Por qué las agencias necesitan una herramienta específica</h2>
+        <p>
+          Google My Business y las plataformas de reseñas están diseñadas para
+          que el propio negocio gestione su cuenta. No están pensadas para que
+          una tercera persona gestione decenas de cuentas simultáneamente.
+          Las consecuencias sin una herramienta adecuada son siempre las mismas:
+        </p>
+        <ul>
+          <li>
+            <span>
+              Decenas de pestañas abiertas: cada cliente, su propio acceso,
+              su propio panel, sin visión global.
+            </span>
+          </li>
+          <li>
+            <span>
+              Reportes manuales que consumen entre 2 y 4 horas por cliente al mes.
+            </span>
+          </li>
+          <li>
+            <span>
+              Crisis de reputación detectadas tarde porque nadie monitoriza
+              activamente las reseñas de todos los clientes.
+            </span>
+          </li>
+          <li>
+            <span>
+              Imposibilidad de demostrar ROI: el cliente no ve datos comparativos
+              de su reputación antes/después de trabajar contigo.
+            </span>
+          </li>
+        </ul>
+        <p>
+          Una herramienta específica para agencias resuelve los cuatro problemas.
+          La pregunta es cuál.
+        </p>
+
+        <h2>Criterios para evaluar una herramienta de reseñas para agencias</h2>
+        <p>
+          Antes de analizar las opciones, estos son los criterios que realmente
+          importan cuando gestionas múltiples clientes:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Dashboard multi-cliente:</strong> ¿Puedes ver todos tus
+              clientes en una sola vista sin cambiar de cuenta?
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Alertas automáticas:</strong> ¿Te avisa cuando un cliente
+              recibe una reseña negativa sin que tengas que entrar a comprobarlo?
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Reportes exportables:</strong> ¿Genera informes PDF/CSV
+              automáticos listos para enviar al cliente?
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Precio por cliente gestionado:</strong> El modelo de precios
+              debe escalar razonablemente con el número de clientes.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Integración con plataformas clave:</strong> Google, Yelp,
+              TripAdvisor, Trustpilot. Cuantas más, mejor.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Facilidad de onboarding:</strong> El tiempo que tardas en
+              añadir un cliente nuevo determina tu eficiencia real.
+            </span>
+          </li>
+        </ul>
+
+        <h2>BrightLocal — La referencia del sector para Local SEO</h2>
+        <p>
+          BrightLocal es probablemente la herramienta más conocida entre agencias
+          de marketing local en el mercado anglosajón. Su punto fuerte es la
+          integración de reseñas con datos de Local SEO: citations, rankings
+          locales y auditorías de presencia online.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Lo mejor:</strong> Herramienta de citation building, auditoría
+              de NAP, integración con más de 80 plataformas de directorios.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Limitaciones:</strong> Interfaz densa, curva de aprendizaje
+              alta, precio que escala rápido por encima de 10 clientes.
+              Principalmente orientada al mercado de habla inglesa.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Precio orientativo:</strong> Desde ~29$/mes para un solo
+              local hasta planes de agencia desde 49$/mes (4 clientes).
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Ideal para:</strong> Agencias con fuerte componente de
+              Local SEO técnico que necesitan datos de citations y rankings.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Vendasta — Suite completa para agencias de marketing</h2>
+        <p>
+          Vendasta no es solo una herramienta de reseñas: es una plataforma
+          completa de marketing digital para agencias (social media, email,
+          páginas web, CRM). La gestión de reputación es una de sus módulos.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Lo mejor:</strong> Suite all-in-one, white-label potente,
+              marketplace de productos que puedes revender a clientes.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Limitaciones:</strong> Precio elevado (desde 79$/mes con
+              módulos básicos), complejidad alta, excesivo para agencias que
+              solo necesitan gestión de reseñas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Ideal para:</strong> Agencias grandes que quieren centralizar
+              todos sus servicios digitales en una sola plataforma.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Podium — Fuerte en generación de reseñas y mensajería</h2>
+        <p>
+          Podium destaca en la generación activa de reseñas a través de SMS
+          y mensajería directa. Si tu agencia necesita ayudar a clientes a
+          conseguir más reseñas (no solo gestionarlas), Podium tiene un
+          enfoque diferenciado.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Lo mejor:</strong> Flujos automatizados de solicitud de
+              reseñas por SMS con altas tasas de conversión. Bandeja de entrada
+              unificada para mensajes de clientes del negocio.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Limitaciones:</strong> Precio elevado (300-500$/mes),
+              orientado principalmente a EE.UU. El análisis de reseñas existentes
+              es menos profundo que competidores especializados.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Ideal para:</strong> Negocios que quieren automatizar la
+              solicitud de reseñas a pacientes o clientes por SMS.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Grade.us — Especializado en agencias, sin excesos</h2>
+        <p>
+          Grade.us (ahora Broadly en algunos mercados) está diseñado
+          específicamente para agencias que gestionan reputación de múltiples
+          clientes. Su modelo es más limpio y su precio más predecible que Vendasta.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Lo mejor:</strong> Modelo de precios claro por número de
+              locales, white-label sólido, generación de reseñas automatizada.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Limitaciones:</strong> Análisis de sentimiento con IA
+              limitado, menos integraciones que BrightLocal, soporte orientado
+              al mercado norteamericano.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Ideal para:</strong> Agencias medianas que necesitan una
+              herramienta de reseñas limpia y escalable, sin la complejidad
+              de una suite completa.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Repusense — Análisis de reseñas con IA para el mercado hispanohablante</h2>
+        <p>
+          Repusense está construido específicamente para negocios y agencias del
+          mercado hispanohablante. Su diferencial frente a las herramientas
+          anglosajona es el análisis de sentimiento en español con IA, la
+          detección automática de temas y el dashboard multi-cliente pensado
+          para la escala de las agencias locales.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Lo mejor:</strong> Análisis de sentimiento en español,
+              inglés y otros idiomas. Dashboard multi-cliente unificado. Alertas
+              en tiempo real. Respuestas sugeridas con IA adaptadas al tono de
+              cada sector. Precio accesible para agencias pequeñas y medianas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Integraciones:</strong> Google Reviews, Yelp, TripAdvisor,
+              Trustpilot. Importación CSV para plataformas adicionales.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Precio:</strong> Plan Business desde 79€/mes con clientes
+              ilimitados. Sin coste por cliente adicional.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Ideal para:</strong> Agencias de marketing local en España
+              y Latinoamérica que gestionan entre 3 y 50 clientes y necesitan
+              análisis de IA en español.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Tabla comparativa rápida</h2>
+        <p>
+          Resumen de los criterios más importantes para tomar la decisión:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>BrightLocal:</strong> Local SEO completo, inglés, precio
+              escalado, curva alta. Mejor para agencias SEO técnicas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Vendasta:</strong> All-in-one, white-label potente, caro,
+              complejo. Mejor para agencias grandes y diversificadas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Podium:</strong> Generación de reseñas por SMS, caro,
+              EE.UU. Mejor para clientes que quieren más reseñas activamente.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Grade.us:</strong> Limpio, escalable, anglosajón. Mejor
+              para agencias medianas sin necesidad de suite completa.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Repusense:</strong> IA en español, multi-cliente, precio
+              fijo. Mejor para agencias del mercado hispanohablante.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Cómo elegir según el tamaño de tu agencia</h2>
+        <p>
+          La herramienta correcta depende de cuántos clientes gestionas y qué
+          servicio ofreces exactamente:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>1-5 clientes:</strong> Cualquier herramienta con plan de
+              entrada funciona. Prioriza la facilidad de uso y el precio. Repusense
+              con plan Pro o Business cubre este rango con margen.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>5-20 clientes:</strong> Aquí el dashboard multi-cliente y
+              los reportes automáticos se vuelven críticos. Evalúa Grade.us o
+              Repusense Business.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>+20 clientes:</strong> Necesitas un modelo de precios
+              predecible, acceso por roles para tu equipo y automatización de
+              reportes. Vendasta o Repusense con acuerdo de agencia.
+            </span>
+          </li>
+        </ul>
+
+        <h2>El coste real: precio de la herramienta vs. tiempo recuperado</h2>
+        <p>
+          La variable que más infravaloran las agencias al evaluar herramientas
+          es el tiempo. Si preparas reportes de reputación manualmente y cada
+          uno te cuesta 2,5 horas con 10 clientes, son 25 horas al mes —
+          más de 3 jornadas completas. A 50€/hora, eso son 1.250€ de coste
+          de oportunidad mensual, todos los meses.
+        </p>
+        <p>
+          Una herramienta que genera esos reportes automáticamente y cuesta
+          79€/mes te devuelve 1.171€ netos el primer mes. El ROI de la
+          automatización no es discutible: la pregunta es solo cuánto tardas
+          en implementarla.
+        </p>
+        <p>
+          Si tu agencia gestiona reseñas para clientes en España o Latinoamérica,{" "}
+          <a href="/para-agencias">Repusense para agencias</a> es el punto de partida
+          más rápido.{" "}
+          <a href="/register">Empieza gratis</a> y añade tus primeros clientes
+          hoy mismo.
+        </p>
+      </>
+    ),
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    slug: "como-mejorar-posicion-google-maps-negocio-local",
+    title: "Cómo mejorar tu posición en Google Maps: guía práctica para negocios locales",
+    description:
+      "Aprende los factores que Google usa para posicionar negocios en Maps y el Local Pack. Optimización de Google My Business, gestión de reseñas, consistencia NAP y estrategias que funcionan en 2026.",
+    date: "2026-06-19",
+    readingTime: "10 min",
+    body: (
+      <>
+        <p>
+          Aparecer en los primeros resultados de Google Maps para búsquedas
+          como "restaurante cerca de mí" o "dentista en Madrid" puede significar
+          la diferencia entre un mes lleno o un mes vacío para un negocio local.
+          El{" "}
+          <strong>Local Pack</strong> — los tres negocios que aparecen en un mapa
+          en la parte superior de los resultados — recibe el{" "}
+          <strong>44% de los clics</strong> en búsquedas locales.
+        </p>
+        <p>
+          Esta guía explica exactamente qué factores controla Google para
+          posicionar negocios en Maps y qué puedes hacer hoy para mejorar tu
+          posición — sin necesidad de conocimientos técnicos avanzados.
+        </p>
+
+        <h2>Los 3 factores de posicionamiento local de Google</h2>
+        <p>
+          Google lo dice explícitamente en su documentación: el Local Pack se
+          ordena según tres factores principales. Entenderlos es el primer paso
+          para optimizarlos.
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Relevancia:</strong> ¿Cuánto coincide tu negocio con lo
+              que el usuario busca? Si buscas "clínica dental urgencias" y tu
+              ficha de Google no menciona urgencias en ningún sitio, difícilmente
+              aparecerás.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Distancia:</strong> ¿Qué tan cerca está tu negocio del
+              usuario que busca (o de la ubicación que indica)? Este factor no
+              puedes controlarlo directamente, pero sí puedes trabajar el área
+              de servicio en tu ficha.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Prominencia:</strong> ¿Cómo de reconocido es tu negocio
+              online? Aquí entran las reseñas, los enlaces, las menciones y tu
+              presencia general en Internet.
+            </span>
+          </li>
+        </ul>
+        <p>
+          La mayoría de negocios se centran solo en la relevancia (rellenar la
+          ficha) e ignoran la prominencia. Es exactamente donde está la oportunidad.
+        </p>
+
+        <h2>1. Optimiza tu ficha de Google My Business al 100%</h2>
+        <p>
+          Una ficha incompleta es una ficha invisible. Google prioriza los negocios
+          que proporcionan información completa y actualizada. Esto incluye:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Nombre exacto del negocio</strong> (sin keywords de relleno:
+              "Clínica Dental López" sí, "Clínica Dental López — El Mejor Dentista
+              Madrid" no — Google penaliza el keyword stuffing en el nombre).
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Categoría principal y categorías secundarias.</strong> Elige
+              la categoría principal más específica posible y añade todas las
+              secundarias relevantes. Un restaurante puede añadir "Restaurante de
+              cocina mediterránea", "Restaurante con terraza" y "Pizzería".
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Horario actualizado</strong> incluyendo festivos y horarios
+              especiales. Las fichas con horario desactualizado pierden posiciones.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Descripción de 750 caracteres</strong> con las palabras clave
+              naturales de tu negocio. No es publicidad: describe exactamente qué
+              haces, dónde y para quién.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Fotos de calidad actualizadas.</strong> Los negocios con más
+              fotos reciben un 42% más de solicitudes de ruta. Añade foto de
+              exterior, interior, equipo y productos/servicios.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Atributos específicos del sector.</strong> "Accesible para
+              sillas de ruedas", "Wifi disponible", "Reservas aceptadas" — cada
+              atributo relevante suma.
+            </span>
+          </li>
+        </ul>
+
+        <h2>2. Las reseñas son el factor de prominencia más potente</h2>
+        <p>
+          Las reseñas tienen un impacto directo y documentado en el posicionamiento
+          en Google Maps. No es una teoría: Google lo confirma en su documentación
+          de posicionamiento local. Estos son los mecanismos específicos:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Volumen total de reseñas:</strong> Más reseñas = más señales
+              de prominencia. Un negocio con 200 reseñas suele superar a uno con
+              20 aunque la nota sea similar.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Valoración media:</strong> Google favorece negocios con alta
+              valoración. Bajar de 4.0 estrellas tiene un impacto negativo
+              significativo en el ranking.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Frecuencia de nuevas reseñas:</strong> Un negocio que recibe
+              reseñas regularmente envía señales de actividad. Un negocio sin
+              reseñas nuevas en 6 meses puede perder posiciones.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Tasa de respuesta:</strong> Google confirma que los negocios
+              que responden a sus reseñas (positivas y negativas) reciben un
+              trato favorable en el algoritmo local.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Keywords en el texto de las reseñas:</strong> Cuando los
+              clientes mencionan en sus reseñas lo que haces ("el mejor café
+              de especialidad de Bilbao"), esas palabras se indexan y mejoran
+              tu relevancia para esas búsquedas.
+            </span>
+          </li>
+        </ul>
+
+        <h2>3. Consistencia NAP en todos los directorios</h2>
+        <p>
+          NAP significa Name, Address, Phone (Nombre, Dirección, Teléfono). Google
+          verifica la coherencia de estos datos en todos los sitios donde aparece
+          tu negocio: Yelp, TripAdvisor, páginas amarillas, directorios sectoriales,
+          tu propia web.
+        </p>
+        <p>
+          Una dirección que en Google pone "Calle Mayor 14, 2ºA" y en Yelp pone
+          "C/ Mayor 14" es técnicamente inconsistente. Google lo interpreta como
+          señal de baja fiabilidad. Audita todos los sitios donde apareces y
+          asegúrate de que el NAP sea <em>idéntico</em> en todos.
+        </p>
+
+        <h2>4. Google Posts: contenido fresco directamente en Maps</h2>
+        <p>
+          Los Google Posts son publicaciones que aparecen directamente en tu ficha
+          de Google Maps. Pueden ser ofertas, novedades, eventos o productos.
+          Publicar Posts con regularidad (mínimo una vez a la semana) envía
+          señales de actividad a Google y da contexto adicional de relevancia.
+        </p>
+        <p>
+          El impacto directo en el ranking es moderado, pero el efecto secundario
+          es importante: los usuarios que llegan a tu ficha ven contenido
+          actualizado, lo que mejora el CTR y el tiempo de interacción — señales
+          que sí impactan el ranking.
+        </p>
+
+        <h2>5. Enlaza tu ficha con tu sitio web optimizado</h2>
+        <p>
+          Google cruza la información de tu ficha con tu sitio web. Asegúrate de:
+        </p>
+        <ul>
+          <li>
+            <span>
+              La URL de tu web en Google My Business apunta a la página correcta
+              (no a una landing genérica).
+            </span>
+          </li>
+          <li>
+            <span>
+              Tu web incluye el NAP exacto, preferiblemente en el footer y en
+              una página de contacto.
+            </span>
+          </li>
+          <li>
+            <span>
+              Si tienes varias sedes, cada sede tiene su propia página con su
+              propia dirección y número de teléfono — no una sola página genérica
+              de "contacto".
+            </span>
+          </li>
+        </ul>
+
+        <h2>6. Preguntas y respuestas (Q&A) en la ficha</h2>
+        <p>
+          La sección de Preguntas y Respuestas de Google My Business es subestimada.
+          Cualquier usuario puede hacer preguntas, y cualquier usuario puede
+          responderlas — incluido tú. Proactivamente, puedes añadir las preguntas
+          más frecuentes de tu negocio y responderlas tú mismo antes de que
+          alguien más lo haga mal.
+        </p>
+        <p>
+          Además, las palabras clave que aparecen en las Q&A contribuyen a la
+          relevancia de tu ficha para esas búsquedas.
+        </p>
+
+        <h2>El factor que más descuidan los negocios: responder reseñas</h2>
+        <p>
+          De todos los factores listados, la respuesta a reseñas es el que más
+          diferencia al negocio promedio del que aparece en el Top 3 de Maps.
+          La razón: es relativamente fácil de hacer, pero la mayoría no lo hace.
+        </p>
+        <p>
+          Responder a todas las reseñas — positivas y negativas — en menos de
+          48 horas es la acción individual con mejor ratio esfuerzo/impacto para
+          mejorar en Google Maps. Si el volumen de reseñas hace esto difícil,
+          las herramientas de análisis con IA como{" "}
+          <a href="/analisis-gratis">Repusense</a> pueden generar respuestas
+          sugeridas en segundos, reduciendo el tiempo de respuesta sin perder
+          calidad.
+        </p>
+
+        <h2>Plan de acción en 30 días</h2>
+        <p>
+          Si empiezas desde cero o llevas tiempo sin optimizar tu ficha, este
+          es el orden de prioridades:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Semana 1:</strong> Completa tu ficha de Google My Business
+              al 100% (nombre, categorías, horario, descripción, fotos, atributos).
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Semana 2:</strong> Audita la consistencia NAP en Yelp,
+              TripAdvisor, páginas amarillas y tu web. Corrige todas las
+              discrepancias.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Semana 3:</strong> Responde a todas las reseñas que no
+              tienen respuesta. Configura un sistema de alertas para responder
+              a las nuevas en menos de 24 horas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Semana 4:</strong> Publica tu primer Google Post y añade
+              las Q&A más frecuentes de tu negocio.
+            </span>
+          </li>
+        </ul>
+        <p>
+          El posicionamiento en Maps no es inmediato: los cambios suelen tardar
+          entre 2 y 8 semanas en reflejarse. La clave es la consistencia. Un{" "}
+          <a href="/analisis-gratis">análisis gratuito de tu reputación</a> es
+          el mejor diagnóstico para saber exactamente dónde empezar.
+        </p>
+      </>
+    ),
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    slug: "gestion-reputacion-online-clinicas-dentales",
+    title: "Gestión de la reputación online para clínicas dentales: guía completa",
+    description:
+      "Cómo gestionar las reseñas online de una clínica dental de forma profesional: dónde buscan los pacientes, cómo responder sin violar la privacidad, plantillas de respuesta y cómo conseguir más valoraciones positivas.",
+    date: "2026-06-20",
+    readingTime: "11 min",
+    body: (
+      <>
+        <p>
+          La odontología es uno de los sectores donde la reputación online tiene
+          mayor impacto en la decisión de compra. El{" "}
+          <strong>81% de los pacientes</strong> lee reseñas antes de elegir un
+          dentista. Y a diferencia de elegir un restaurante, donde una mala
+          experiencia tiene consecuencias limitadas, la elección de clínica dental
+          implica confianza, dolor potencial y coste económico elevado.
+        </p>
+        <p>
+          Esto significa que los pacientes son <em>extraordinariamente</em> exigentes
+          con las valoraciones de clínicas dentales. Y significa también que una
+          gestión activa de la reputación tiene un impacto directo y medible en
+          el número de primeras visitas que recibe tu clínica cada mes.
+        </p>
+
+        <h2>Dónde buscan los pacientes antes de elegir clínica dental</h2>
+        <p>
+          El recorrido habitual del paciente antes de su primera cita:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Google Maps / Local Pack:</strong> La búsqueda "dentista en
+              [ciudad]" muestra el Local Pack de Google con las clínicas más
+              cercanas y valoradas. Es el primer filtro para la mayoría de pacientes.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Google Reviews directamente:</strong> Una vez encontrada la
+              clínica, el 90% de los pacientes lee las reseñas de Google. Son las
+              más visibles y las que más pesan en la decisión.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Doctoralia:</strong> La plataforma líder de reseñas médicas
+              en España. Los pacientes que buscan específicamente especialistas
+              (ortodoncistas, implantólogos) suelen consultar Doctoralia además
+              de Google.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Boca a boca digital:</strong> Grupos de Facebook locales,
+              foros de comunidades y WhatsApp. No indexables en Google pero
+              con alto impacto en la decisión final.
+            </span>
+          </li>
+        </ul>
+        <p>
+          La prioridad de optimización es clara: Google primero, Doctoralia segundo,
+          y una estrategia de monitorización para el resto.
+        </p>
+
+        <h2>Los tipos de reseñas negativas más comunes en clínicas dentales</h2>
+        <p>
+          Conocer los patrones de quejas del sector te permite anticiparte y
+          responder con más eficacia. Los temas que más aparecen en reseñas
+          negativas de clínicas dentales son:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Tiempo de espera:</strong> "Tenía cita a las 10 y me
+              atendieron a las 11:15." Es la queja más frecuente y la más
+              fácil de gestionar sistémicamente.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Precio y transparencia:</strong> "No me informaron del
+              coste total antes del tratamiento." La sorpresa económica genera
+              las reseñas más duras.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Trato del personal de recepción:</strong> A menudo más
+              mencionado que la calidad clínica. La primera impresión, en persona
+              o por teléfono, es crítica.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Gestión del dolor o incomodidad:</strong> "Me dolió mucho
+              y nadie me explicó qué esperar." La comunicación antes y después
+              del tratamiento reduce este tipo de quejas.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Seguimiento post-tratamiento:</strong> La ausencia de
+              contacto tras un procedimiento invasivo genera sensación de abandono.
+            </span>
+          </li>
+        </ul>
+        <p>
+          Identificar cuál de estos temas es el más frecuente en tu clínica
+          te permite intervenir en la causa raíz, no solo en las reseñas.
+        </p>
+
+        <h2>El reto específico de responder reseñas en salud: privacidad del paciente</h2>
+        <p>
+          Las clínicas dentales tienen una restricción que no tienen otros negocios:
+          la privacidad del paciente. Bajo el RGPD y la legislación sanitaria
+          española, no puedes confirmar ni desmentir información clínica de un
+          paciente en tu respuesta pública, incluso si la reseña contiene
+          información errónea o difamatoria.
+        </p>
+        <p>
+          Esto significa que la estructura de respuesta para una clínica dental
+          es diferente a la de un restaurante o un hotel:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Nunca confirmes que esa persona es tu paciente,</strong>{" "}
+              aunque lo sea. Una respuesta que empiece con "Hola María, lamentamos
+              que tu tratamiento de implantes no..." ya está revelando datos
+              protegidos.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Nunca desmintas detalles clínicos en público.</strong>{" "}
+              Si la reseña dice algo incorrecto sobre su tratamiento, no lo
+              corrijas en la respuesta pública. Invita al diálogo privado.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Usa formulaciones genéricas pero empáticas.</strong>{" "}
+              "Nos preocupa que tu experiencia no haya sido la esperada. Nos
+              gustaría poder hablar contigo para entender mejor lo ocurrido
+              y encontrar una solución."
+            </span>
+          </li>
+        </ul>
+
+        <h2>Plantillas de respuesta para reseñas de clínica dental</h2>
+        <p>
+          Estas plantillas respetan la privacidad del paciente y mantienen un
+          tono profesional y empático:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Reseña negativa sobre espera:</strong> "Lamentamos mucho
+              que hayas tenido que esperar más de lo previsto. Los retrasos
+              pueden ocurrir cuando un caso requiere más tiempo del esperado,
+              aunque entendemos que eso no debería afectar tu experiencia.
+              Estamos trabajando para mejorar nuestra puntualidad. Si quieres
+              hablar con nosotros sobre tu visita, llámanos a [teléfono] y
+              haremos todo lo posible para compensar el inconveniente."
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Reseña negativa sobre precio:</strong> "Agradecemos que
+              compartas tu experiencia. La transparencia en presupuestos es
+              fundamental para nosotros. Si en algún momento no recibiste toda
+              la información que necesitabas sobre el coste del tratamiento,
+              nos gustaría poder revisarlo contigo. Puedes contactarnos en
+              [teléfono o email] y te atenderemos con mucho gusto."
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Reseña negativa sobre trato del equipo:</strong> "Nos
+              apena leer esto. El trato a nuestros pacientes es nuestra
+              prioridad y nos tomamos muy en serio cualquier comentario al
+              respecto. Te invitamos a contactarnos directamente en [teléfono]
+              para poder escucharte y, si es posible, mejorar tu experiencia
+              con nosotros."
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Reseña positiva:</strong> "Muchas gracias por tus palabras,
+              [nombre si aparece]. Para nosotros es muy importante que te hayas
+              sentido bien atendido/a. Nos alegra contar con pacientes como tú.
+              ¡Hasta la próxima visita!"
+            </span>
+          </li>
+        </ul>
+
+        <h2>Cómo conseguir más reseñas positivas sin violaciones éticas</h2>
+        <p>
+          La forma más eficaz de mejorar tu reputación no es solo gestionar las
+          reseñas negativas — es conseguir que los pacientes satisfechos también
+          escriban. El problema: los pacientes contentos raramente lo hacen
+          espontáneamente.
+        </p>
+        <p>
+          La solución es el momento y el canal adecuado. Pedir una reseña en
+          el momento correcto multiplica la tasa de conversión:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Inmediatamente tras una experiencia positiva.</strong> El
+              paciente sale de la clínica aliviado o satisfecho. Es el mejor
+              momento. Un simple "Si has quedado contento, nos ayudaría mucho
+              que dejaras una reseña en Google" funciona mejor que cualquier
+              email posterior.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>SMS o WhatsApp de seguimiento 24-48h después.</strong>{" "}
+              "¿Cómo te encuentras tras tu visita de ayer? Si todo fue bien,
+              nos encantaría que lo compartieras en Google [enlace directo]."
+              La tasa de respuesta a mensajes es significativamente mayor que
+              al email.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Un QR en recepción</strong> que lleve directamente a tu
+              ficha de Google. El acceso inmediato reduce la fricción.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Nunca ofrezcas incentivos a cambio de reseñas.</strong>{" "}
+              Descuentos, regalos o cualquier compensación por reseñas positivas
+              viola las políticas de Google y puede derivar en la eliminación
+              de tu ficha.
+            </span>
+          </li>
+        </ul>
+
+        <h2>Sistema de monitorización para clínicas con poco tiempo</h2>
+        <p>
+          La mayoría de directores de clínica no tienen tiempo de revisar sus
+          reseñas en Google, Doctoralia y otras plataformas cada día. La solución
+          no es dedicar más tiempo — es automatizar el seguimiento.
+        </p>
+        <p>
+          Un sistema básico incluye:
+        </p>
+        <ul>
+          <li>
+            <span>
+              <strong>Alertas de email</strong> cuando llegue una reseña nueva
+              (Google My Business permite configurarlas de forma nativa, aunque
+              con retraso y sin análisis).
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Panel centralizado</strong> que agrupe todas las plataformas
+              en un solo lugar, con análisis de temas para saber qué está
+              generando las quejas (¿esperas? ¿precio? ¿trato?).
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>Respuestas sugeridas con IA</strong> que respeten la
+              privacidad del paciente y estén listas para revisar y publicar en
+              segundos, no en minutos.
+            </span>
+          </li>
+        </ul>
+        <p>
+          Repusense está diseñado para este flujo. Las respuestas que genera la
+          IA para clínicas nunca revelan datos del paciente y mantienen el tono
+          profesional que el sector requiere. El{" "}
+          <a href="/analisis-gratis">análisis gratuito</a> te muestra en 30
+          segundos cuál es la puntuación de reputación de tu clínica ahora mismo
+          y qué áreas están generando más comentarios negativos.
+        </p>
+
+        <h2>El impacto medible de gestionar bien tu reputación</h2>
+        <p>
+          Los estudios del sector son consistentes: las clínicas dentales que
+          responden activamente a sus reseñas y mantienen una valoración por
+          encima de 4.5 estrellas en Google reciben entre un{" "}
+          <strong>40% y un 70% más de primeras visitas</strong> desde búsquedas
+          orgánicas que clínicas equivalentes con valoración entre 3.5 y 4.0.
+        </p>
+        <p>
+          La diferencia de 0.5-1 estrella en Google puede representar, según el
+          tamaño de la clínica, entre 5 y 20 pacientes nuevos al mes. A un ticket
+          medio de primera visita de 80-150€, el impacto económico anual es
+          significativo y cuantificable.
+        </p>
+        <p>
+          La gestión de reputación no es un coste de marketing — es una inversión
+          con retorno directo y medible. Y para las clínicas dentales, donde la
+          confianza lo es todo, es la inversión con mejor ratio
+          impacto/esfuerzo que existe.
+        </p>
+      </>
+    ),
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {

@@ -50,8 +50,9 @@ function RegisterForm() {
         router.push("/login");
         return;
       }
-      // Si venía de elegir un plan de pago, llévalo al dashboard de facturación.
-      router.push(intendedPlan ? "/dashboard/settings?upgrade=" + intendedPlan : "/dashboard");
+      // Si venía de elegir un plan de pago, llévalo directo a settings.
+      // Si no, flujo de onboarding guiado para conectar su primer negocio.
+      router.push(intendedPlan ? "/dashboard/settings?upgrade=" + intendedPlan : "/dashboard/onboarding");
       router.refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error inesperado");

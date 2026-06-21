@@ -251,10 +251,10 @@ function EmptyState() {
       </p>
       <div className="mt-6 flex gap-3">
         <Button asChild>
-          <Link href="/dashboard/sources">Conectar fuente</Link>
+          <Link href="/dashboard/onboarding">Empezar guía</Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link href="/dashboard/sources#import">Importar CSV</Link>
+          <Link href="/dashboard/sources">Conectar manualmente</Link>
         </Button>
       </div>
     </div>

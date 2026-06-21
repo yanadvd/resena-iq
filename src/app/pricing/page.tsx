@@ -3,7 +3,7 @@ import { SiteHeader, SiteFooter } from "@/components/marketing/site-header";
 import { PricingCards } from "@/components/marketing/pricing-cards";
 import { FaqJsonLd } from "@/components/marketing/json-ld";
 
-const TITLE = "Precios y planes — Repusense | desde 0€";
+const TITLE = "Precios · Análisis de reseñas con IA | Repusense";
 const DESCRIPTION =
   "Planes Free, Pro (29€/mes) y Business (79€/mes) de Repusense. Análisis de reseñas con IA para negocios de cualquier tamaño. Sin permanencia.";
 

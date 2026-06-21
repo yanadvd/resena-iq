@@ -23,13 +23,6 @@ export const metadata: Metadata = {
   title: "Repusense — Análisis de reseñas con IA para tu negocio",
   description:
     "Centraliza, analiza y mejora tu reputación online. Conecta Google, Yelp, TripAdvisor y Trustpilot, recibe análisis de sentimiento con IA y alertas automáticas.",
-  keywords: [
-    "análisis de reseñas",
-    "reputación online",
-    "sentimiento IA",
-    "Google Reviews",
-    "SaaS reseñas",
-  ],
   alternates: { canonical: "/" },
   openGraph: {
     title: "Repusense — Análisis de reseñas con IA para negocios locales",

@@ -63,11 +63,12 @@ const config: Config = {
         "3xl": "calc(var(--radius) + 16px)",        // 24px
       },
       boxShadow: {
-        // Material You — difuso, sin dureza
-        "card-sm":  "0 1px 3px 0 rgba(15,23,42,0.08), 0 1px 2px -1px rgba(15,23,42,0.04)",
-        "card-md":  "0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -2px rgba(15,23,42,0.04)",
-        "card-lg":  "0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -4px rgba(15,23,42,0.04)",
-        "primary":  "0 4px 14px 0 hsl(248 79% 39% / 0.25)",
+        // Navy-tinted — difuso, sin dureza
+        "card-sm":  "0px 4px 20px rgba(15, 23, 42, 0.05)",
+        "card-md":  "0px 10px 30px rgba(15, 23, 42, 0.08)",
+        "card-lg":  "0px 20px 40px rgba(15, 23, 42, 0.12)",
+        "primary":  "0px 0px 15px rgba(0, 88, 190, 0.30)",
+        "primary-lg": "0px 0px 25px rgba(0, 88, 190, 0.50)",
       },
       keyframes: {
         "accordion-down": {

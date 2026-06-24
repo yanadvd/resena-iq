@@ -4,19 +4,22 @@ import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
-      <div className="container flex h-16 items-center justify-between py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Sparkles className="size-5" />
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/90 backdrop-blur-md">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <Sparkles className="size-4" />
           </span>
-          <span className="font-display text-xl font-semibold tracking-tight">
-            Repu<span className="text-accent">sense</span>
+          <span className="font-display text-[15px] font-bold tracking-tight">
+            Repu<span className="text-primary">sense</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <Link href="/analisis-gratis" className="font-semibold text-accent transition-colors hover:text-accent/80">
+        <nav className="hidden items-center gap-7 text-[13px] text-muted-foreground md:flex">
+          <Link
+            href="/analisis-gratis"
+            className="font-semibold text-primary transition-colors hover:text-primary/80"
+          >
             Análisis gratis
           </Link>
           <a href="/#features" className="transition-colors hover:text-foreground">
@@ -37,7 +40,7 @@ export function SiteHeader() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/login">Entrar</Link>
           </Button>
-          <Button size="sm" asChild>
+          <Button variant="brand" size="sm" asChild>
             <Link href="/register">Empezar gratis</Link>
           </Button>
         </div>
@@ -48,13 +51,13 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 py-12">
+    <footer className="border-t border-border py-12">
       <div className="container flex flex-col items-center justify-between gap-6 text-sm text-muted-foreground md:flex-row">
         <div className="flex items-center gap-2">
           <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <Sparkles className="size-4" />
           </span>
-          <span className="font-display font-semibold text-foreground">
+          <span className="font-display font-bold text-foreground">
             Repusense
           </span>
           <span className="ml-2">© {new Date().getFullYear()}</span>

@@ -4,52 +4,57 @@
 
 /* ===========================================================================
    Repusense — Design tokens
-   Dirección estética: Modern SaaS · Light, preciso, data-driven.
-   Inter (todo) + JetBrains Mono (labels/datos). Deep Indigo + Teal sobre
-   fondo lavanda muy claro. Sombras suaves, sin grain, sin brillo oscuro.
+   Dirección estética: Technical Elegance · SaaS data-driven, preciso.
+   Inter (todo) + JetBrains Mono (código/datos).
+   Electric Blue (#0058be) + Negro (#000) sobre fondo blanco-azulado (#f8f9ff).
+   Botones pill, tarjetas rounded-xl, sombras navy suaves.
    =========================================================================== */
 :root {
   /* ── Surface ──────────────────────────────────────────────────── */
-  /* #faf8ff — lavanda casi blanco                                   */
-  --background:  248 100% 99%;
-  --foreground:  219  41% 13%;    /* #131b2e  navy oscuro            */
+  /* #f8f9ff — blanco azulado muy sutil                              */
+  --background:  231 100% 99%;
+  --foreground:  212  63% 12%;    /* #0b1c30  navy profundo          */
 
   /* ── Cards ────────────────────────────────────────────────────── */
-  --card:        0    0%  100%;   /* blanco puro                     */
-  --card-foreground: 219 41% 13%;
+  --card:              0   0% 100%;   /* blanco puro                 */
+  --card-foreground:  212  63% 12%;
 
-  /* ── Primary: Deep Indigo #2a14b4 ────────────────────────────── */
-  --primary:          248 79% 39%;
-  --primary-foreground: 0   0% 100%;
+  /* ── Popover ──────────────────────────────────────────────────── */
+  --popover:           0   0% 100%;
+  --popover-foreground: 212 63% 12%;
 
-  /* ── Secondary: surface tintada (#eaedff) ────────────────────── */
-  --secondary:          231 100% 96%;
-  --secondary-foreground: 219 41% 13%;
+  /* ── Primary: Electric Blue #0058be ─────────────────────────── */
+  --primary:          212 100% 37%;
+  --primary-foreground:  0   0% 100%;
 
-  /* ── Muted: contenedor más suave (#f2f3ff) ───────────────────── */
-  --muted:          231 100% 97%;
-  --muted-foreground: 247  10% 33%;   /* #464554                    */
+  /* ── Secondary: surface azul claro (#eff4ff) ─────────────────── */
+  --secondary:         223 100% 97%;
+  --secondary-foreground: 212 63% 12%;
 
-  /* ── Accent: Teal #00687a ────────────────────────────────────── */
-  --accent:           187 100% 24%;
-  --accent-foreground: 0    0% 100%;
+  /* ── Muted ────────────────────────────────────────────────────── */
+  --muted:             223 100% 97%;
+  --muted-foreground:  233   5% 29%;   /* #45464d                   */
+
+  /* ── Accent: igual que primary para links/texto de acción ─────── */
+  --accent:            212 100% 37%;   /* #0058be                   */
+  --accent-foreground:   0   0% 100%;
 
   /* ── Destructive ─────────────────────────────────────────────── */
-  --destructive:           0  75% 41%;   /* #ba1a1a                 */
-  --destructive-foreground: 0   0% 100%;
+  --destructive:         0  74% 42%;   /* #ba1a1a                   */
+  --destructive-foreground: 0  0% 100%;
 
-  /* ── Borders & inputs (#dae2fd) ──────────────────────────────── */
-  --border: 228 68% 93%;
-  --input:  228 68% 93%;
-  --ring:   248 79% 39%;   /* primary para focus ring               */
+  /* ── Borders & inputs (#c6c6cd) ──────────────────────────────── */
+  --border:  240  7% 79%;
+  --input:   240  7% 79%;
+  --ring:    212 100% 37%;   /* #0058be para focus ring             */
 
   /* ── Sentiment (data viz) ────────────────────────────────────── */
-  --positive: 158 60% 38%;
-  --neutral:  42  80% 44%;
-  --negative: 0   70% 45%;
+  --positive: 152 58% 38%;
+  --neutral:   38 90% 47%;
+  --negative:   0 74% 42%;
 
   /* ── Shape ───────────────────────────────────────────────────── */
-  --radius: 0.5rem;   /* 8 px — standard SaaS                       */
+  --radius: 0.5rem;   /* 8px base; rounded-xl = 12px               */
 }
 
 /* ─── Reset global ─────────────────────────────────────────────── */
@@ -76,30 +81,42 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* ─── Atmósfera hero: malla suave en tono índigo/teal ──────────── */
+/* ─── Atmósfera hero: malla azul suave ─────────────────────────── */
 .bg-mesh {
   background-image:
-    radial-gradient(55% 55% at 15% 5%,  hsl(248 100% 88% / 0.55) 0%, transparent 65%),
-    radial-gradient(40% 40% at 85% 15%, hsl(187 100% 85% / 0.35) 0%, transparent 55%),
-    radial-gradient(45% 45% at 55% 95%, hsl(248  79% 90% / 0.40) 0%, transparent 60%);
+    radial-gradient(at 0%   0%,   hsla(217, 100%, 82%, 0.40) 0px, transparent 50%),
+    radial-gradient(at 100% 0%,   hsla(215,  80%, 75%, 0.30) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(220, 100%, 90%, 0.40) 0px, transparent 50%),
+    radial-gradient(at 0%   100%, hsla(210, 100%, 85%, 0.30) 0px, transparent 50%);
 }
 
-/* ─── Glass: frosted white ─────────────────────────────────────── */
+/* ─── Glass: white frosted ─────────────────────────────────────── */
 @layer utilities {
   .text-balance { text-wrap: balance; }
 
   .glass {
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid hsl(var(--border) / 0.6);
+    background: rgba(255, 255, 255, 0.80);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 1);
   }
 
-  /* Sombra suave estilo Material You */
+  /* Sombra navy suave — level 1 */
   .card-elevation {
-    box-shadow:
-      0 4px 6px  -1px rgba(15, 23, 42, 0.08),
-      0 2px 4px  -2px rgba(15, 23, 42, 0.04);
+    box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+  }
+
+  /* Sombra navy suave — level 2 hover */
+  .card-elevation-hover {
+    box-shadow: 0px 10px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  /* Blue glow en hover de botones */
+  .primary-glow {
+    box-shadow: 0px 0px 15px rgba(0, 88, 190, 0.3);
+  }
+  .primary-glow:hover {
+    box-shadow: 0px 0px 25px rgba(0, 88, 190, 0.5);
   }
 
   /* Mono label estilo JetBrains */
@@ -107,16 +124,26 @@ body {
     font-family: var(--font-mono), "JetBrains Mono", monospace;
     letter-spacing: 0.05em;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 
-/* ─── Scrollbar delgada en tono claro ──────────────────────────── */
-::-webkit-scrollbar { width: 8px; height: 8px; }
+/* ─── AI pulse animation ────────────────────────────────────────── */
+@keyframes ai-pulse {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 190, 0.7); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(0, 88, 190, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 190, 0); }
+}
+
+.ai-pulse {
+  animation: ai-pulse 2s infinite;
+}
+
+/* ─── Scrollbar delgada ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 8px;
-  border: 2px solid hsl(var(--background));
+  background: #cbd5e1;
+  border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:hover { background: hsl(228 40% 82%); }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }

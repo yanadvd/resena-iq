@@ -8,7 +8,7 @@ const createSchema = z.object({
   // Solo Google está disponible por ahora. Añade YELP/TRIPADVISOR/TRUSTPILOT
   // aquí (y en AVAILABLE_SOURCES del formulario) cuando su integración esté activa.
   type: z.enum(["GOOGLE"]),
-  label: z.string().min(2).max(80),
+  label: z.string().min(2).max(200),
   url: z.string().url().optional().or(z.literal("")),
   externalId: z.string().max(120).optional(),
 });

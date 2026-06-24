@@ -64,7 +64,7 @@ export function OnboardingWizard({ userName, orgName }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "GOOGLE",
-          label: selected.name,
+          label: selected.name.slice(0, 200),
           externalId: selected.placeId,
         }),
       });

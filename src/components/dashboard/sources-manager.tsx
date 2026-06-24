@@ -41,7 +41,7 @@ export function SourcesManager({
       const res = await fetch("/api/sources", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, label: label || SOURCE_META[type].label, url, externalId }),
+        body: JSON.stringify({ type, label: (label || SOURCE_META[type].label).slice(0, 200), url, externalId }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error");

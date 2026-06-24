@@ -19,7 +19,7 @@ const EMPRESA = {
   titular: "David Yana Nsang",
   nif: "60114599M",
   direccion: "Calle Doña Francisquita 3, 4ºD, 28041 Madrid (España)",
-  email: "ratify@gmail.com",
+  email: "contacto@repusense.com",
   pais: "España",
 };
 

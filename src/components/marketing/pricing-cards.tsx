@@ -87,15 +87,25 @@ export function PricingCards({ compact = false }: { compact?: boolean }) {
                 <span className="text-muted-foreground">/mes</span>
               </div>
 
-              <Button
-                variant={highlight ? "default" : "outline"}
-                className="mt-6"
-                disabled={loading === id}
-                onClick={() => handleSelect(id)}
-              >
-                {loading === id && <Loader2 className="size-4 animate-spin" />}
-                {id === "FREE" ? "Empezar gratis" : `Elegir ${plan.name}`}
-              </Button>
+              {id === "BUSINESS" ? (
+                <Button
+                  variant="outline"
+                  className="mt-6 w-full"
+                  asChild
+                >
+                  <a href="mailto:contacto@repusense.com">Contactar ventas</a>
+                </Button>
+              ) : (
+                <Button
+                  variant={highlight ? "default" : "outline"}
+                  className="mt-6 w-full"
+                  disabled={loading === id}
+                  onClick={() => handleSelect(id)}
+                >
+                  {loading === id && <Loader2 className="size-4 animate-spin" />}
+                  {id === "FREE" ? "Empezar gratis" : `Elegir ${plan.name}`}
+                </Button>
+              )}
 
               <ul className="mt-7 space-y-3 text-sm">
                 <Feature>

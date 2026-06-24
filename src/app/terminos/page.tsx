@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const EMPRESA = {
   titular: "David Yana Nsang",
-  email: "ratify@gmail.com",
+  email: "contacto@repusense.com",
   jurisdiccion: "Madrid",
   pais: "España",
 };

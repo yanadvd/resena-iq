@@ -67,6 +67,7 @@ export function SiteFooter() {
           <Link href="/blog" className="hover:text-foreground">Blog</Link>
           <Link href="/pricing" className="hover:text-foreground">Precios</Link>
           <Link href="/login" className="hover:text-foreground">Entrar</Link>
+          <a href="mailto:contacto@repusense.com" className="hover:text-foreground">Contacto</a>
           <Link href="/privacidad" className="hover:text-foreground">Privacidad</Link>
           <Link href="/terminos" className="hover:text-foreground">Términos</Link>
         </nav>

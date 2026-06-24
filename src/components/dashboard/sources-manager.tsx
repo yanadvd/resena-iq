@@ -1,19 +1,20 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Plus, Trash2, Upload, Loader2, CheckCircle2, AlertCircle, Plug,
+  Search, MapPin, Star, Building2, X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SOURCE_META } from "@/lib/reviews/sources";
+import type { PlaceResult } from "@/app/api/places/search/route";
 import type { ReviewSource, SourceType } from "@prisma/client";
 
 const CONNECTABLE: SourceType[] = ["GOOGLE", "YELP", "TRIPADVISOR", "TRUSTPILOT"];
-// Plataformas con integración real activa. El resto se muestran como "Pronto".
 const AVAILABLE_SOURCES: SourceType[] = ["GOOGLE"];
 
 export function SourcesManager({
@@ -33,6 +34,50 @@ export function SourcesManager({
   const [adding, setAdding] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
+  // Google Places search state
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<PlaceResult[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [selected, setSelected] = useState<PlaceResult | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleQueryChange = useCallback((value: string) => {
+    setQuery(value);
+    setSelected(null);
+    setExternalId("");
+    setLabel("");
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (value.trim().length < 3) { setResults([]); return; }
+    debounceRef.current = setTimeout(async () => {
+      setSearching(true);
+      try {
+        const res = await fetch(`/api/places/search?q=${encodeURIComponent(value)}`);
+        const data = await res.json();
+        setResults(data.places ?? []);
+      } catch {
+        setResults([]);
+      } finally {
+        setSearching(false);
+      }
+    }, 500);
+  }, []);
+
+  function selectPlace(p: PlaceResult) {
+    setSelected(p);
+    setExternalId(p.placeId);
+    setLabel(p.name.slice(0, 200));
+    setResults([]);
+    setQuery(p.name);
+  }
+
+  function clearSelection() {
+    setSelected(null);
+    setExternalId("");
+    setLabel("");
+    setQuery("");
+    setResults([]);
+  }
+
   async function addSource(e: React.FormEvent) {
     e.preventDefault();
     setMsg(null);
@@ -41,7 +86,12 @@ export function SourcesManager({
       const res = await fetch("/api/sources", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, label: (label || SOURCE_META[type].label).slice(0, 200), url, externalId }),
+        body: JSON.stringify({
+          type,
+          label: (label || SOURCE_META[type].label).slice(0, 200),
+          url,
+          externalId: externalId || undefined,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error");
@@ -52,6 +102,8 @@ export function SourcesManager({
       setLabel("");
       setUrl("");
       setExternalId("");
+      setQuery("");
+      setSelected(null);
       router.refresh();
     } catch (e) {
       setMsg({ ok: false, text: e instanceof Error ? e.message : "Error" });
@@ -76,13 +128,14 @@ export function SourcesManager({
           {!canAddMore ? (
             <div className="rounded-xl border border-border bg-secondary/40 p-4 text-sm text-muted-foreground">
               Has alcanzado el límite de canales del plan {planName}.{" "}
-              <a href="/dashboard/settings" className="font-semibold text-accent hover:underline">
+              <a href="/dashboard/settings" className="font-semibold text-primary hover:underline">
                 Mejora tu plan
               </a>{" "}
               para conectar más.
             </div>
           ) : (
             <form onSubmit={addSource} className="space-y-4">
+              {/* Platform selector */}
               <div className="space-y-2">
                 <Label>Plataforma</Label>
                 <div className="grid grid-cols-2 gap-2">
@@ -94,7 +147,12 @@ export function SourcesManager({
                         type="button"
                         disabled={!available}
                         title={available ? undefined : "Disponible próximamente"}
-                        onClick={() => available && setType(t)}
+                        onClick={() => {
+                          if (available) {
+                            setType(t);
+                            clearSelection();
+                          }
+                        }}
                         className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-sm transition-colors ${
                           type === t
                             ? "border-primary bg-primary/10 text-foreground"
@@ -113,51 +171,124 @@ export function SourcesManager({
                   })}
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="label">Etiqueta</Label>
-                <Input id="label" value={label} onChange={(e) => setLabel(e.target.value)} placeholder={`${SOURCE_META[type].label} - Sucursal Centro`} />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="url">URL del perfil (opcional)</Label>
-                <Input id="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://..." />
-              </div>
-              {(type === "GOOGLE" || type === "YELP") && (
+
+              {/* Google: buscador de negocio */}
+              {type === "GOOGLE" && (
                 <div className="space-y-2">
-                  <Label htmlFor="extId">
-                    {type === "GOOGLE" ? "Place ID de Google" : "Business ID / alias de Yelp"}
-                  </Label>
-                  <Input
-                    id="extId"
-                    value={externalId}
-                    onChange={(e) => setExternalId(e.target.value)}
-                    placeholder={type === "GOOGLE" ? "ChIJ..." : "restaurant-shusui-venray"}
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    {type === "GOOGLE" ? (
-                      <>
-                        Pégalo desde el{" "}
-                        <a
-                          href="https://developers.google.com/maps/documentation/places/web-service/place-id"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-accent hover:underline"
-                        >
-                          buscador de Place ID
-                        </a>{" "}
-                        de Google (de un negocio con ficha). Necesario para reseñas reales.
-                      </>
-                    ) : (
-                      "El ID o alias del negocio en Yelp (aparece en la URL de su ficha). Yelp solo expone ~3 reseñas. Necesario para reseñas reales."
+                  <Label>Busca tu negocio</Label>
+                  <div className="relative">
+                    <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                      value={query}
+                      onChange={(e) => handleQueryChange(e.target.value)}
+                      placeholder="Nombre del negocio + ciudad…"
+                      className="pl-9 pr-9"
+                      disabled={!!selected}
+                    />
+                    {selected && (
+                      <button
+                        type="button"
+                        onClick={clearSelection}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      >
+                        <X className="size-4" />
+                      </button>
                     )}
-                  </p>
+                    {searching && !selected && (
+                      <Loader2 className="absolute right-3 top-1/2 size-4 -translate-y-1/2 animate-spin text-muted-foreground" />
+                    )}
+                  </div>
+
+                  {/* Resultados del buscador */}
+                  {results.length > 0 && !selected && (
+                    <div className="space-y-1.5">
+                      {results.map((p) => (
+                        <button
+                          key={p.placeId}
+                          type="button"
+                          onClick={() => selectPlace(p)}
+                          className="w-full rounded-xl border border-border bg-card/60 p-3 text-left transition-all hover:border-primary/50 hover:bg-card"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex min-w-0 items-start gap-2.5">
+                              <Building2 className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                              <div className="min-w-0">
+                                <p className="truncate text-sm font-semibold">{p.name}</p>
+                                <p className="mt-0.5 flex items-center gap-1 truncate text-xs text-muted-foreground">
+                                  <MapPin className="size-3 shrink-0" /> {p.address}
+                                </p>
+                              </div>
+                            </div>
+                            {p.rating && (
+                              <span className="shrink-0 flex items-center gap-1 rounded-lg bg-secondary/60 px-2 py-1 text-xs font-semibold">
+                                <Star className="size-3 fill-current text-[hsl(var(--neutral))]" />
+                                {p.rating.toFixed(1)}
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {query.length >= 3 && !searching && results.length === 0 && !selected && (
+                    <p className="rounded-xl border border-border bg-card/50 p-3 text-center text-xs text-muted-foreground">
+                      No encontramos resultados. Prueba con más detalle: nombre + ciudad.
+                    </p>
+                  )}
+
+                  {/* Negocio seleccionado */}
+                  {selected && (
+                    <div className="flex items-center gap-2.5 rounded-xl border border-primary/40 bg-primary/5 p-3">
+                      <CheckCircle2 className="size-4 shrink-0 text-primary" />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-semibold">{selected.name}</p>
+                        <p className="truncate text-xs text-muted-foreground">{selected.address}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
+
+              {/* Etiqueta personalizada (opcional) */}
+              <div className="space-y-2">
+                <Label htmlFor="label">
+                  Etiqueta{" "}
+                  <span className="text-muted-foreground font-normal">(opcional)</span>
+                </Label>
+                <Input
+                  id="label"
+                  value={label}
+                  onChange={(e) => setLabel(e.target.value)}
+                  placeholder={
+                    selected
+                      ? selected.name
+                      : `${SOURCE_META[type].label} - Sucursal Centro`
+                  }
+                />
+              </div>
+
+              {/* URL opcional */}
+              <div className="space-y-2">
+                <Label htmlFor="url">
+                  URL del perfil{" "}
+                  <span className="text-muted-foreground font-normal">(opcional)</span>
+                </Label>
+                <Input
+                  id="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://..."
+                />
+              </div>
+
               <Button type="submit" disabled={adding} className="w-full">
                 {adding ? <Loader2 className="size-4 animate-spin" /> : <Plus className="size-4" />}
                 Conectar y sincronizar
               </Button>
+
               {msg && (
-                <p className={`flex items-center gap-1.5 text-sm ${msg.ok ? "text-accent" : "text-destructive"}`}>
+                <p className={`flex items-center gap-1.5 text-sm ${msg.ok ? "text-primary" : "text-destructive"}`}>
                   {msg.ok ? <CheckCircle2 className="size-4" /> : <AlertCircle className="size-4" />}
                   {msg.text}
                 </p>
@@ -185,7 +316,10 @@ export function SourcesManager({
               {sources.map((s) => (
                 <li key={s.id} className="flex items-center justify-between py-3">
                   <div className="flex items-center gap-3">
-                    <span className="flex size-9 items-center justify-center rounded-lg" style={{ background: `${SOURCE_META[s.type].color}22` }}>
+                    <span
+                      className="flex size-9 items-center justify-center rounded-lg"
+                      style={{ background: `${SOURCE_META[s.type].color}22` }}
+                    >
                       <Plug className="size-4" style={{ color: SOURCE_META[s.type].color }} />
                     </span>
                     <div>
@@ -198,7 +332,12 @@ export function SourcesManager({
                       </p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" onClick={() => removeSource(s.id)} title="Eliminar fuente">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => removeSource(s.id)}
+                    title="Eliminar fuente"
+                  >
                     <Trash2 className="size-4 text-destructive" />
                   </Button>
                 </li>
@@ -252,12 +391,17 @@ function CsvImport() {
           automáticamente con IA.
         </p>
         <input ref={fileRef} type="file" accept=".csv,text/csv" onChange={handleFile} className="hidden" />
-        <Button variant="outline" className="w-full" disabled={uploading} onClick={() => fileRef.current?.click()}>
+        <Button
+          variant="outline"
+          className="w-full"
+          disabled={uploading}
+          onClick={() => fileRef.current?.click()}
+        >
           {uploading ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
           Seleccionar archivo CSV
         </Button>
         {msg && (
-          <p className={`mt-3 flex items-center gap-1.5 text-sm ${msg.ok ? "text-accent" : "text-destructive"}`}>
+          <p className={`mt-3 flex items-center gap-1.5 text-sm ${msg.ok ? "text-primary" : "text-destructive"}`}>
             {msg.ok ? <CheckCircle2 className="size-4" /> : <AlertCircle className="size-4" />}
             {msg.text}
           </p>

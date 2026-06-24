@@ -167,7 +167,7 @@ async function googleFetch(
     const publishedAt = r.publishTime ? new Date(r.publishTime) : new Date();
     if (since && publishedAt <= since) continue;
     const text =
-      (r.text?.text ?? r.originalText?.text ?? "").trim() ||
+      (r.originalText?.text ?? r.text?.text ?? "").trim() ||
       "(Reseña sin comentario)";
     const reviewId =
       r.name?.split("/").pop() ??

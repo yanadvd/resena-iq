@@ -83,7 +83,7 @@ export async function generatePublicReport(
       id: String(i),
       rating: Math.max(1, Math.min(5, Math.round(r.rating ?? 0))),
       author: r.authorAttribution?.displayName ?? "Anónimo",
-      text: (r.text?.text ?? r.originalText?.text ?? "").trim(),
+      text: (r.originalText?.text ?? r.text?.text ?? "").trim(),
     }))
     .filter((r) => r.text.length > 0);
 

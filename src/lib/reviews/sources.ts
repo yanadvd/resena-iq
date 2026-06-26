@@ -152,7 +152,14 @@ async function googleFetch(
   const res = await fetch(
     `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
     {
-      headers: { "X-Goog-Api-Key": apiKey, "X-Goog-FieldMask": "reviews" },
+      headers: {
+        "X-Goog-Api-Key": apiKey,
+        // Pedimos originalText explícitamente — sin languageCode en la request,
+        // Google devuelve text en el idioma del lugar; originalText siempre
+        // contiene el texto tal como lo escribió el autor.
+        "X-Goog-FieldMask":
+          "reviews.name,reviews.rating,reviews.text,reviews.originalText,reviews.authorAttribution,reviews.publishTime",
+      },
       cache: "no-store",
     }
   );

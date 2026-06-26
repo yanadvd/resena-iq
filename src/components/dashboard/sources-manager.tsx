@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Plus, Trash2, Upload, Loader2, CheckCircle2, AlertCircle, Plug,
-  Search, MapPin, Star, Building2, X,
+  Search, MapPin, Star, Building2, X, RefreshCw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,7 @@ export function SourcesManager({
   const [externalId, setExternalId] = useState("");
   const [adding, setAdding] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [resyncing, setResyncing] = useState<string | null>(null);
 
   // Google Places search state
   const [query, setQuery] = useState("");
@@ -115,6 +116,24 @@ export function SourcesManager({
   async function removeSource(id: string) {
     await fetch(`/api/sources?id=${id}`, { method: "DELETE" });
     router.refresh();
+  }
+
+  async function resyncSource(id: string) {
+    setResyncing(id);
+    try {
+      const res = await fetch(`/api/sources/resync?id=${id}`, { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Error");
+      setMsg({
+        ok: true,
+        text: `Reimportadas ${data.ingest?.created ?? 0} reseñas en idioma original.`,
+      });
+      router.refresh();
+    } catch (e) {
+      setMsg({ ok: false, text: e instanceof Error ? e.message : "Error al reimportar" });
+    } finally {
+      setResyncing(null);
+    }
   }
 
   return (
@@ -307,6 +326,12 @@ export function SourcesManager({
           <CardTitle>Fuentes conectadas</CardTitle>
         </CardHeader>
         <CardContent>
+          {msg && (
+            <p className={`mb-4 flex items-center gap-1.5 text-sm ${msg.ok ? "text-primary" : "text-destructive"}`}>
+              {msg.ok ? <CheckCircle2 className="size-4" /> : <AlertCircle className="size-4" />}
+              {msg.text}
+            </p>
+          )}
           {sources.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               Aún no has conectado ninguna fuente.
@@ -332,14 +357,28 @@ export function SourcesManager({
                       </p>
                     </div>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeSource(s.id)}
-                    title="Eliminar fuente"
-                  >
-                    <Trash2 className="size-4 text-destructive" />
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => resyncSource(s.id)}
+                      disabled={resyncing === s.id}
+                      title="Reimportar reseñas en idioma original"
+                    >
+                      {resyncing === s.id
+                        ? <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                        : <RefreshCw className="size-4 text-muted-foreground" />
+                      }
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeSource(s.id)}
+                      title="Eliminar fuente"
+                    >
+                      <Trash2 className="size-4 text-destructive" />
+                    </Button>
+                  </div>
                 </li>
               ))}
             </ul>

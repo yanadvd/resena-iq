@@ -240,7 +240,7 @@ export function OnboardingWizard({ userName, orgName }: Props) {
             ) : (
               <CheckCircle2 className="size-4" />
             )}
-            Conectar {selected ? `"${selected.name}"` : "negocio"}
+            {selected ? "Conectar negocio" : "Buscar negocio"}
           </Button>
         </div>
       )}

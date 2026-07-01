@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Check, Loader2, CreditCard, Sparkles, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,6 +30,7 @@ function Panel({
   hasCustomer: boolean;
 }) {
   const params = useSearchParams();
+  const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const current = PLANS[plan];
@@ -77,6 +78,22 @@ function Panel({
   }, []);
 
   const checkoutSuccess = params.get("checkout") === "success";
+
+  // Tras un checkout exitoso, el webhook de Stripe actualiza el plan de forma
+  // asíncrona. Si aún vemos FREE, refrescamos cada 3s (máx. ~30s) para reflejar
+  // el nuevo plan sin que el usuario tenga que recargar a mano.
+  useEffect(() => {
+    if (!checkoutSuccess || plan !== "FREE") return;
+    let tries = 0;
+    const interval = setInterval(() => {
+      tries++;
+      router.refresh();
+      if (tries >= 10) clearInterval(interval);
+    }, 3000);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkoutSuccess, plan]);
+
   const upgradeOptions = PLAN_ORDER.filter(
     (p) => p !== "FREE" && PLAN_ORDER.indexOf(p) > PLAN_ORDER.indexOf(plan)
   );
@@ -84,8 +101,16 @@ function Panel({
   return (
     <div className="space-y-6">
       {checkoutSuccess && (
-        <div className="flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 p-4 text-sm text-accent">
-          <Check className="size-4" /> ¡Suscripción activada! Tu plan se actualizará en unos segundos.
+        <div className="flex items-center gap-2 rounded-xl border border-positive/40 bg-positive/10 p-4 text-sm font-medium text-positive">
+          {plan === "FREE" ? (
+            <>
+              <Loader2 className="size-4 animate-spin" /> ¡Pago completado! Activando tu plan…
+            </>
+          ) : (
+            <>
+              <Check className="size-4" /> ¡Suscripción activada! Ya tienes acceso a tu plan {current.name}. 🎉
+            </>
+          )}
         </div>
       )}
 

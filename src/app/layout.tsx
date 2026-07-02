@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { OrganizationJsonLd } from "@/components/marketing/json-ld";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${mono.variable}`}>
       <body className="font-sans antialiased">
+        <OrganizationJsonLd />
         <Providers>{children}</Providers>
       </body>
     </html>

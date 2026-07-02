@@ -40,7 +40,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
     datePublished: post.date,
     dateModified: post.date,
     author: { "@type": "Organization", name: "Repusense" },
-    publisher: { "@type": "Organization", name: "Repusense" },
+    publisher: {
+      "@type": "Organization",
+      name: "Repusense",
+      logo: { "@type": "ImageObject", url: `${APP_URL}/icon.svg` },
+    },
+    image: `${APP_URL}/og-image.png`,
     mainEntityOfPage: `${APP_URL}/blog/${post.slug}`,
   };
 

@@ -1,5 +1,40 @@
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://repusense.net";
 
+/** Organization + WebSite — identidad de marca para el knowledge panel. */
+export function OrganizationJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${APP_URL}/#organization`,
+        name: "Repusense",
+        url: APP_URL,
+        logo: `${APP_URL}/icon.svg`,
+        image: `${APP_URL}/og-image.png`,
+        description:
+          "Plataforma de análisis de reseñas y reputación online con IA para negocios locales.",
+        email: "contacto@repusense.com",
+        sameAs: [] as string[],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${APP_URL}/#website`,
+        url: APP_URL,
+        name: "Repusense",
+        publisher: { "@id": `${APP_URL}/#organization` },
+        inLanguage: "es-ES",
+      },
+    ],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 /** Datos estructurados de la app para resultados enriquecidos en Google. */
 export function SoftwareJsonLd() {
   const data = {

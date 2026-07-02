@@ -32,6 +32,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     siteName: "Repusense",
+    url: "/",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Repusense — Análisis de reseñas con IA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Repusense — Análisis de reseñas con IA para negocios locales",
+    description:
+      "Centraliza tus reseñas, analízalas con IA y mejora tu reputación online.",
+    images: ["/og-image.png"],
   },
 };
 

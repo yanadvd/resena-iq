@@ -12,6 +12,17 @@ const nextConfig = {
     ],
   },
   poweredByHeader: false,
+  // Fuerza el dominio canónico sin www (evita que www y non-www carguen ambos).
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.repusense.net" }],
+        destination: "https://repusense.net/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

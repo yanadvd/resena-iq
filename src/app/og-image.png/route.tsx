@@ -9,12 +9,12 @@ export async function GET() {
         style={{
           width: 1200,
           height: 630,
-          background: "#0b0c14",
+          background: "#f8f9ff",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "flex-start",
-          padding: 64,
+          padding: 72,
           gap: 0,
         }}
       >
@@ -22,44 +22,45 @@ export async function GET() {
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <div
             style={{
-              width: 48,
-              height: 48,
+              width: 52,
+              height: 52,
               borderRadius: 14,
-              background: "#7c7cf8",
+              background: "#0058be",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <div style={{ width: 22, height: 22, background: "white", borderRadius: 4, display: "flex" }} />
+            <div style={{ width: 24, height: 24, background: "white", borderRadius: 5, display: "flex" }} />
           </div>
-          <div style={{ fontSize: 30, fontWeight: 700, color: "#f0f0f5", display: "flex" }}>
-            Repu<span style={{ color: "#2dd9c2" }}>sense</span>
+          <div style={{ fontSize: 32, fontWeight: 700, color: "#0b1c30", display: "flex" }}>
+            Repu<span style={{ color: "#0058be" }}>sense</span>
           </div>
         </div>
 
         {/* Headline */}
         <div
           style={{
-            marginTop: 56,
-            fontSize: 68,
+            marginTop: 64,
+            fontSize: 72,
             fontWeight: 700,
-            color: "#f0f0f5",
-            lineHeight: 1.06,
+            color: "#0b1c30",
+            lineHeight: 1.05,
+            letterSpacing: "-0.02em",
             display: "flex",
             flexDirection: "column",
           }}
         >
           <span>Reputación online</span>
-          <span style={{ color: "#2dd9c2" }}>bajo control.</span>
+          <span style={{ color: "#0058be" }}>bajo control.</span>
         </div>
 
         {/* Subtítulo */}
         <div
           style={{
-            marginTop: 24,
-            fontSize: 24,
-            color: "#7e7e96",
+            marginTop: 28,
+            fontSize: 26,
+            color: "#45464d",
             display: "flex",
           }}
         >
@@ -70,8 +71,9 @@ export async function GET() {
         <div
           style={{
             marginTop: 64,
-            fontSize: 18,
-            color: "#7c7cf8",
+            fontSize: 20,
+            fontWeight: 600,
+            color: "#0058be",
             display: "flex",
           }}
         >

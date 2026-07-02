@@ -7,8 +7,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // El área privada y las APIs no deben indexarse.
-      disallow: ["/dashboard", "/api/"],
+      // El área privada, las APIs y las páginas de auth no deben indexarse.
+      disallow: ["/dashboard", "/api/", "/login", "/register"],
     },
     sitemap: `${base}/sitemap.xml`,
   };
